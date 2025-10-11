@@ -1,0 +1,41 @@
+services:
+  order-db:
+    image: postgres:15
+    container_name: order_db
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: user
+      POSTGRES_DB: order_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - order-data:/var/lib/postgresql/data
+
+  inventory-db:
+    image: postgres:15
+    container_name: inventory_db
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: user
+      POSTGRES_DB: inventory_db
+    ports:
+      - "5433:5432"
+    volumes:
+      - inventory-data:/var/lib/postgresql/data
+
+  notification-db:
+    image: postgres:15
+    container_name: notification_db
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: user
+      POSTGRES_DB: notification_db
+    ports:
+      - "5434:5432"
+    volumes:
+      - notification-data:/var/lib/postgresql/data
+
+volumes:
+  order-data:
+  inventory-data:
+  notification-data:
