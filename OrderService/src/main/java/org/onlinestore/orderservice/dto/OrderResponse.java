@@ -9,11 +9,11 @@ import java.util.UUID;
 
 @Builder
 public record OrderResponse(
-        UUID orderId,
+        UUID id,
         UUID userId,
-        List<ProductItemResponse> products,
+        List<OrderProductResponse> products,
         String status,
-        LocalDateTime createAt,
+        LocalDateTime createdAt,
         BigDecimal totalSum
 ) {
 }

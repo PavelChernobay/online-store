@@ -39,9 +39,9 @@ public class Basket {
     @JoinColumn(name = "user_id", nullable = false, unique = true)
     private User user;
 
-    @OneToMany(mappedBy = "basket", fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
+    @OneToMany(mappedBy = "basket", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
     @Builder.Default
-    private List<ProductItem> productItems = new ArrayList<>();
+    private List<BasketProduct> basketProducts = new ArrayList<>();
 
     @Column(name = "total_sum", nullable = false)
     @Builder.Default

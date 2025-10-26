@@ -1,9 +1,9 @@
 package org.onlinestore.orderservice.validate;
 
 import lombok.RequiredArgsConstructor;
-import org.onlinestore.orderservice.entity.ProductItem;
+import org.onlinestore.orderservice.entity.BasketProduct;
 import org.onlinestore.orderservice.exception.ProductNotFoundException;
-import org.onlinestore.orderservice.repository.ProductItemRepository;
+import org.onlinestore.orderservice.repository.BasketProductRepository;
 import org.springframework.stereotype.Component;
 
 import java.util.UUID;
@@ -12,10 +12,10 @@ import java.util.UUID;
 @RequiredArgsConstructor
 public class ProductItemValidate {
 
-    private ProductItemRepository productItemRepository;
+    private BasketProductRepository basketProductRepository;
 
-    public ProductItem checkProductItemById(UUID id) {
-        return productItemRepository.findById(id).orElseThrow(
+    public BasketProduct checkProductItemById(UUID id) {
+        return basketProductRepository.findById(id).orElseThrow(
                 () -> new ProductNotFoundException(ProductNotFoundException.PRODUCT_NOT_FOUND));
     }
 

@@ -4,10 +4,12 @@ server:
 spring:
   application:
     name: order-service
+
   datasource:
     url: jdbc:postgresql://localhost:5432/order_db
     username: user
     password: user
+
   jpa:
     hibernate:
       ddl-auto: validate
@@ -25,6 +27,21 @@ spring:
       secret: "r9ZPBmZeMj3uO7Rzy5l4xinVfZerNZ97eUstX71ewWw="
       expiration-ms: 3600000
       refresh-expiration-ms: 604800000
+
+  scheduler:
+    inventory-outbox:
+      fix-delay: 60000
+    analytics-outbox:
+      cron: "0 0 0 * * *"
+
+  kafka:
+    bootstrap-servers: "localhost:9092"
+    topic:
+      analytics-topic: "analytics"
+    partition:
+      count: 3
+    streams:
+      replication-factor: 1
 
 grpc:
   client:

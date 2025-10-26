@@ -2,7 +2,7 @@ package org.onlinestore.orderservice.service;
 
 import org.onlinestore.orderservice.dto.BasketResponse;
 import org.onlinestore.orderservice.dto.CreateProduct;
-import org.onlinestore.orderservice.dto.ProductItemResponse;
+import org.onlinestore.orderservice.dto.BasketProductResponse;
 
 import java.util.List;
 import java.util.UUID;
@@ -13,7 +13,7 @@ public interface BasketService {
 
     BasketResponse deleteProductToBasket(UUID id);
 
-    List<ProductItemResponse> getAllProductsToBasket();
+    List<BasketProductResponse> getAllProductsToBasket();
 
     BasketResponse getBasketCurrentUser();
 

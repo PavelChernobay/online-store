@@ -11,8 +11,8 @@ CREATE TABLE IF NOT EXISTS users
 
 CREATE TABLE IF NOT EXISTS baskets
 (
-	id          UUID PRIMARY KEY        DEFAULT gen_random_uuid(),
-	user_id     UUID           NOT NULL UNIQUE REFERENCES users (id) ON DELETE CASCADE,
+	id        UUID PRIMARY KEY        DEFAULT gen_random_uuid(),
+	user_id   UUID           NOT NULL UNIQUE REFERENCES users (id) ON DELETE CASCADE,
 	total_sum DECIMAL(10, 2) NOT NULL DEFAULT 0
 );
 
@@ -25,16 +25,27 @@ CREATE TABLE IF NOT EXISTS orders
 	total_sum  DECIMAL(10, 2)   DEFAULT 0 NOT NULL
 );
 
-CREATE TABLE IF NOT EXISTS product_items
+CREATE TABLE IF NOT EXISTS basket_products
 (
 	id         UUID PRIMARY KEY DEFAULT gen_random_uuid(),
 	product_id UUID           NOT NULL,
 	basket_id  UUID             DEFAULT NULL REFERENCES baskets (id) ON DELETE CASCADE,
-	order_id   UUID UNIQUE      DEFAULT NULL REFERENCES orders (id) ON DELETE CASCADE,
 	name       VARCHAR(255)   NOT NULL,
 	quantity   INT            NOT NULL,
 	price      DECIMAL(10, 2) NOT NULL,
 	sale       INT              DEFAULT 0,
-	total_sum  DECIMAL(10, 2)        NOT NULL NOT NULL
+	total_sum  DECIMAL(10, 2) NOT NULL NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS order_products
+(
+	id         UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+	product_id UUID           NOT NULL,
+	order_id   UUID             DEFAULT NULL REFERENCES orders (id) ON DELETE CASCADE,
+	name       VARCHAR(255)   NOT NULL,
+	quantity   INT            NOT NULL,
+	price      DECIMAL(10, 2) NOT NULL,
+	sale       INT              DEFAULT 0,
+	total_sum  DECIMAL(10, 2) NOT NULL NOT NULL
 );
 

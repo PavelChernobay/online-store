@@ -10,7 +10,7 @@ import java.util.UUID;
 public record BasketResponse(
         UUID id,
         UUID userId,
-        List<ProductItemResponse> products,
+        List<BasketProductResponse> products,
         BigDecimal totalSum
 ) {
 }

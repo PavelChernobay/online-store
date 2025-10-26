@@ -1,6 +1,6 @@
 package org.onlinestore.orderservice.repository;
 
-import org.onlinestore.orderservice.entity.ProductItem;
+import org.onlinestore.orderservice.entity.BasketProduct;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -8,8 +8,8 @@ import java.util.Optional;
 import java.util.UUID;
 
 @Repository
-public interface ProductItemRepository extends JpaRepository<ProductItem, UUID> {
+public interface BasketProductRepository extends JpaRepository<BasketProduct, UUID> {
 
-    Optional<ProductItem> findByName(String productName);
+    Optional<BasketProduct> findByName(String productName);
 
 }

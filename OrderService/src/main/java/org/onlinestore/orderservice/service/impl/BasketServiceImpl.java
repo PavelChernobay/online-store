@@ -3,17 +3,17 @@ package org.onlinestore.orderservice.service.impl;
 import lombok.RequiredArgsConstructor;
 import org.onlinestore.orderservice.dto.BasketResponse;
 import org.onlinestore.orderservice.dto.CreateProduct;
-import org.onlinestore.orderservice.dto.ProductItemResponse;
+import org.onlinestore.orderservice.dto.BasketProductResponse;
 import org.onlinestore.orderservice.entity.Basket;
-import org.onlinestore.orderservice.entity.ProductItem;
+import org.onlinestore.orderservice.entity.BasketProduct;
 import org.onlinestore.orderservice.entity.User;
 import org.onlinestore.orderservice.exception.BasketNotFoundException;
 import org.onlinestore.orderservice.exception.ProductNotFoundException;
 import org.onlinestore.orderservice.mapper.BasketMapper;
-import org.onlinestore.orderservice.mapper.ProductItemMapper;
+import org.onlinestore.orderservice.mapper.BasketProductMapper;
 import org.onlinestore.orderservice.repository.BasketRepository;
 import org.onlinestore.orderservice.service.BasketService;
-import org.onlinestore.orderservice.service.ProductItemService;
+import org.onlinestore.orderservice.service.BasketProductService;
 import org.onlinestore.orderservice.service.UserService;
 import org.onlinestore.orderservice.validate.BasketValidate;
 import org.springframework.stereotype.Service;
@@ -28,11 +28,11 @@ import java.util.UUID;
 public class BasketServiceImpl implements BasketService {
 
     private final BasketRepository basketRepository;
-    private final ProductItemService productItemService;
+    private final BasketProductService basketProductService;
     private final UserService userService;
     private final BasketMapper basketMapper;
     private final BasketValidate basketValidate;
-    private final ProductItemMapper productItemMapper;
+    private final BasketProductMapper basketProductMapper;
 
     @Transactional
     @Override
@@ -45,28 +45,28 @@ public class BasketServiceImpl implements BasketService {
                     return newBasket;
                 });
 
-        ProductItem productItem = productItemService.createProductItem(createProduct);
+        BasketProduct basketProduct = basketProductService.createProductItem(createProduct);
 
-        ProductItem existingProduct = basket.getProductItems().stream()
-                .filter(item -> item.getName().equals(productItem.getName()))
+        BasketProduct existingProduct = basket.getBasketProducts().stream()
+                .filter(item -> item.getName().equals(basketProduct.getName()))
                 .findFirst()
                 .orElse(null);
 
         if (existingProduct != null) {
-            int newQuantity = existingProduct.getQuantity() + productItem.getQuantity();
+            int newQuantity = existingProduct.getQuantity() + basketProduct.getQuantity();
             existingProduct.setQuantity(newQuantity);
-            existingProduct.setPrice(productItem.getPrice());
-            existingProduct.setSale(productItem.getSale());
-            existingProduct.setTotalSum(productItem.getPrice()
+            existingProduct.setPrice(basketProduct.getPrice());
+            existingProduct.setSale(basketProduct.getSale());
+            existingProduct.setTotalSum(basketProduct.getPrice()
                     .multiply(BigDecimal.valueOf(newQuantity))
-                    .multiply(BigDecimal.valueOf(1 - productItem.getSale() / 100.0)));
+                    .multiply(BigDecimal.valueOf(1 - basketProduct.getSale() / 100.0)));
         } else {
-            productItem.setBasket(basket);
-            basket.getProductItems().add(productItem);
+            basketProduct.setBasket(basket);
+            basket.getBasketProducts().add(basketProduct);
         }
 
-        BigDecimal totalSum = basket.getProductItems().stream()
-                .map(ProductItem::getTotalSum)
+        BigDecimal totalSum = basket.getBasketProducts().stream()
+                .map(BasketProduct::getTotalSum)
                 .reduce(BigDecimal.ZERO, BigDecimal::add);
         basket.setTotalSum(totalSum);
 
@@ -78,24 +78,24 @@ public class BasketServiceImpl implements BasketService {
     public BasketResponse deleteProductToBasket(UUID id) {
         Basket basket = basketValidate.checkBasketWithProductItemsByUserId(id);
 
-        ProductItem removeProductItem = basket.getProductItems().stream()
+        BasketProduct removeBasketProduct = basket.getBasketProducts().stream()
                 .filter(item -> item.getId().equals(id))
                 .findFirst()
                 .orElseThrow(() -> new ProductNotFoundException(
                         ProductNotFoundException.PRODUCT_NOT_FOUND_TO_BASKET));
 
-        basket.setTotalSum(basket.getTotalSum().subtract(removeProductItem.getTotalSum()));
-        basket.getProductItems().remove(removeProductItem);
+        basket.setTotalSum(basket.getTotalSum().subtract(removeBasketProduct.getTotalSum()));
+        basket.getBasketProducts().remove(removeBasketProduct);
 
         return basketMapper.basketToBasketResponse(basket);
     }
 
     @Override
-    public List<ProductItemResponse> getAllProductsToBasket() {
+    public List<BasketProductResponse> getAllProductsToBasket() {
         User user = userService.getCurrentUser();
         Basket basket = basketValidate.checkBasketWithProductItemsByUserId(user.getId());
 
-        return productItemMapper.productItemsToProductItemResponses(basket.getProductItems());
+        return basketProductMapper.basketProductsToBasketProductResponses(basket.getBasketProducts());
     }
 
     @Override
@@ -109,9 +109,6 @@ public class BasketServiceImpl implements BasketService {
     @Override
     public void clearBasket() {
         User user = userService.getCurrentUser();
-        Basket basket = basketValidate.checkBasketWithProductItemsByUserId(user.getId());
-        basket.getProductItems().forEach(productItem -> productItem.setBasket(null));
-        basket.getProductItems().clear();
-        basket.setTotalSum(BigDecimal.ZERO);
+        basketRepository.deleteByUserId(user.getId());
     }
 }

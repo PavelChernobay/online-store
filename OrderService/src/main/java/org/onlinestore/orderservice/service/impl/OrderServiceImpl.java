@@ -4,7 +4,8 @@ import lombok.RequiredArgsConstructor;
 import org.onlinestore.orderservice.dto.BasketResponse;
 import org.onlinestore.orderservice.dto.OrderResponse;
 import org.onlinestore.orderservice.entity.Order;
-import org.onlinestore.orderservice.entity.ProductItem;
+import org.onlinestore.orderservice.entity.BasketProduct;
+import org.onlinestore.orderservice.entity.OrderProduct;
 import org.onlinestore.orderservice.entity.Status;
 import org.onlinestore.orderservice.entity.User;
 import org.onlinestore.orderservice.exception.ProductNotFoundException;
@@ -12,9 +13,11 @@ import org.onlinestore.orderservice.grpc.ProductBatchGrpcResponse;
 import org.onlinestore.orderservice.grpc.ProductGrpcResponse;
 import org.onlinestore.orderservice.grpc.client.InventoryGrpcClient;
 import org.onlinestore.orderservice.mapper.OrderMapper;
-import org.onlinestore.orderservice.mapper.ProductItemMapper;
+import org.onlinestore.orderservice.mapper.BasketProductMapper;
 import org.onlinestore.orderservice.repository.OrderRepository;
+import org.onlinestore.orderservice.service.AnalyticsOutboxService;
 import org.onlinestore.orderservice.service.BasketService;
+import org.onlinestore.orderservice.service.InventoryOutboxService;
 import org.onlinestore.orderservice.service.OrderService;
 import org.onlinestore.orderservice.service.UserService;
 import org.springframework.stereotype.Service;
@@ -33,9 +36,11 @@ public class OrderServiceImpl implements OrderService {
     private final OrderRepository orderRepository;
     private final UserService userService;
     private final BasketService basketService;
-    private final ProductItemMapper productItemMapper;
+    private final BasketProductMapper basketProductMapper;
     private final InventoryGrpcClient inventoryGrpcClient;
     private final OrderMapper orderMapper;
+    private final InventoryOutboxService inventoryOutboxService;
+    private final AnalyticsOutboxService analyticsOutboxService;
 
     @Transactional
     @Override
@@ -46,24 +51,23 @@ public class OrderServiceImpl implements OrderService {
         Order order = Order.builder()
                 .user(user)
                 .status(Status.CREATED)
-                .totalPrice(basketResponse.totalSum())
+                .totalSum(basketResponse.totalSum())
                 .build();
 
         try {
-            List<ProductItem> productItems = productItemMapper
-                    .productItemResponsesToProductItems(basketResponse.products());
-            List<String> listName = productItems.stream()
-                    .map(ProductItem::getName)
+            List<BasketProduct> basketProducts = basketProductMapper
+                    .basketProductsResponseToBasketProducts(basketResponse.products());
+            List<String> listName = basketProducts.stream()
+                    .map(BasketProduct::getName)
                     .toList();
 
             ProductBatchGrpcResponse inventoryResponse = inventoryGrpcClient.getListProductByName(listName);
 
-            validateQuantityProducts(inventoryResponse, productItems);
+            validateQuantityProducts(inventoryResponse, basketProducts);
 
-            productItems.forEach(productItem -> {
-                productItem.setOrder(order);
-                order.getProductItems().add(productItem);
-            });
+            buildOrderProducts(basketProducts, order);
+            basketProducts.forEach(product ->
+                    inventoryOutboxService.createInventoryOutbox(product.getName(), product.getQuantity()));
         } catch (RuntimeException ex) {
             order.setStatus(Status.FAILED);
             orderRepository.save(order);
@@ -71,7 +75,9 @@ public class OrderServiceImpl implements OrderService {
         }
 
         basketService.clearBasket();
-        Order saveOrder = orderRepository.save(order);
+
+        Order saveOrder = orderRepository.saveAndFlush(order);
+        analyticsOutboxService.createAnalyticsOutbox(saveOrder);
 
         return orderMapper.orderToOrderResponse(saveOrder);
     }
@@ -87,7 +93,22 @@ public class OrderServiceImpl implements OrderService {
                 .findByUserId(userService.getCurrentUser().getId()));
     }
 
-    private void validateQuantityProducts(ProductBatchGrpcResponse inventoryResponse, List<ProductItem> productItems) {
+    private void buildOrderProducts(List<BasketProduct> basketProducts, Order order) {
+        List<OrderProduct> orderProducts = basketProducts.stream()
+                .map(product -> OrderProduct.builder()
+                        .productId(product.getProductId())
+                        .order(order)
+                        .name(product.getName())
+                        .quantity(product.getQuantity())
+                        .price(product.getPrice())
+                        .sale(product.getSale())
+                        .totalSum(product.getTotalSum())
+                        .build())
+                .toList();
+        order.setOrderProducts(orderProducts);
+    }
+
+    private void validateQuantityProducts(ProductBatchGrpcResponse inventoryResponse, List<BasketProduct> basketProducts) {
         Map<String, Integer> inventoryProducts = new HashMap<>();
         for (ProductGrpcResponse product : inventoryResponse.getProductResponseList()) {
             String name = product.getName();
@@ -97,9 +118,9 @@ public class OrderServiceImpl implements OrderService {
 
         List<String> problems = new ArrayList<>();
 
-        for (ProductItem productItem : productItems) {
-            String name = productItem.getName();
-            int requiredQuantity = productItem.getQuantity();
+        for (BasketProduct basketProduct : basketProducts) {
+            String name = basketProduct.getName();
+            int requiredQuantity = basketProduct.getQuantity();
 
             Integer remainder = inventoryProducts.get(name);
 

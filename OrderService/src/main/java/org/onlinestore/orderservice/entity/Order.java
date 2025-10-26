@@ -53,11 +53,10 @@ public class Order {
 
     @Column(name = "total_sum", nullable = false)
     @Builder.Default
-    private BigDecimal totalPrice = BigDecimal.ZERO;
+    private BigDecimal totalSum = BigDecimal.ZERO;
 
-    @OneToMany(mappedBy = "order", fetch = FetchType.LAZY,
-            cascade = {CascadeType.MERGE, CascadeType.REMOVE}, orphanRemoval = true)
+    @OneToMany(mappedBy = "order", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
     @Builder.Default
-    private List<ProductItem> productItems = new ArrayList<>();
+    private List<OrderProduct> orderProducts = new ArrayList<>();
 
 }

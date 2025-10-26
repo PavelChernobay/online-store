@@ -11,7 +11,9 @@ public interface BasketRepository extends JpaRepository<Basket, UUID> {
 
     Optional<Basket> findByUserId(UUID id);
 
-    @EntityGraph(attributePaths = "productItems")
+    @EntityGraph(attributePaths = "basketProducts")
     Optional<Basket> findWithProductItemsByUserId(UUID id);
+
+    void deleteByUserId(UUID id);
 
 }

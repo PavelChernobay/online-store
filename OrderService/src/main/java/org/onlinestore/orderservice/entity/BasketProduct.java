@@ -23,8 +23,8 @@ import java.util.UUID;
 @Setter
 @Getter
 @Builder
-@Entity(name = "product_items")
-public class ProductItem {
+@Entity(name = "basket_products")
+public class BasketProduct {
 
     @Id
     @GeneratedValue
@@ -37,10 +37,6 @@ public class ProductItem {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "basket_id")
     private Basket basket;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "order_id")
-    private Order order;
 
     @Column(name = "name", nullable = false)
     private String name;

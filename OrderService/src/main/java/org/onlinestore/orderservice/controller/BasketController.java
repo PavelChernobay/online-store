@@ -4,7 +4,7 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.onlinestore.orderservice.dto.BasketResponse;
 import org.onlinestore.orderservice.dto.CreateProduct;
-import org.onlinestore.orderservice.dto.ProductItemResponse;
+import org.onlinestore.orderservice.dto.BasketProductResponse;
 import org.onlinestore.orderservice.service.BasketService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -41,7 +41,7 @@ public class BasketController {
     }
 
     @GetMapping("/products")
-    public ResponseEntity<List<ProductItemResponse>> getAllProductsInBasket() {
+    public ResponseEntity<List<BasketProductResponse>> getAllProductsInBasket() {
         return ResponseEntity.ok(basketService.getAllProductsToBasket());
     }
 
