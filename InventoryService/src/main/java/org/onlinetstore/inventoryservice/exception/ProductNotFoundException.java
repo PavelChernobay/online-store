@@ -3,6 +3,6 @@ package org.onlinetstore.inventoryservice.exception;
 public class ProductNotFoundException extends RuntimeException {
 
     public ProductNotFoundException() {
-        super("Product not found");
+        super("Данного продукта нет");
     }
 }

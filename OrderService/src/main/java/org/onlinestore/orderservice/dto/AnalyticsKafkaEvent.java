@@ -7,6 +7,7 @@ import java.util.UUID;
 
 @Builder
 public record AnalyticsKafkaEvent(
+        Long id,
         UUID orderId,
         UUID productId,
         UUID userId,

@@ -12,10 +12,10 @@ import java.util.List;
 public interface ProductMapper {
 
     @Mapping(target = "id", ignore = true)
-    Product CreateProductToProduct(CreateProduct createProduct);
+    Product createProductToProduct(CreateProduct createProduct);
 
-    ProductResponse ProductToProductResponse(Product product);
+    ProductResponse productToProductResponse(Product product);
 
-    List<ProductResponse> ProductsToProductResponses(List<Product> products);
+    List<ProductResponse> productsToProductResponses(List<Product> products);
 
 }

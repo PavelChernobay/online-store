@@ -32,15 +32,15 @@ public class ProductServiceImpl implements ProductService {
         Product product = productValidate.checkProductByName(createProduct.name());
 
         if (product == null) {
-            product = productMapper.CreateProductToProduct(createProduct);
-            return productMapper.ProductToProductResponse(productRepository.save(product));
+            product = productMapper.createProductToProduct(createProduct);
+            return productMapper.productToProductResponse(productRepository.save(product));
         }
 
         product.setPrice(createProduct.price());
         product.setQuantity(product.getQuantity() + createProduct.quantity());
         product.setSale(createProduct.sale());
 
-        return productMapper.ProductToProductResponse(product);
+        return productMapper.productToProductResponse(product);
     }
 
     @Override
@@ -52,14 +52,14 @@ public class ProductServiceImpl implements ProductService {
         PageRequest pageable = PageRequest.of(page, size, sort);
 
         Page<Product> productsPage = productRepository.findAll(pageable);
-        List<ProductResponse> productResponses = productMapper.ProductsToProductResponses(productsPage.getContent());
+        List<ProductResponse> productResponses = productMapper.productsToProductResponses(productsPage.getContent());
 
         return new PageImpl<>(productResponses, pageable, productsPage.getTotalElements());
     }
 
     @Override
     public ProductResponse getProductById(UUID id) {
-        return productMapper.ProductToProductResponse(productValidate.checkProductById(id));
+        return productMapper.productToProductResponse(productValidate.checkProductById(id));
     }
 
     @Override

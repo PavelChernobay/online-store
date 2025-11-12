@@ -53,6 +53,7 @@ public class AnalyticsOutboxServiceImpl implements AnalyticsOutboxService {
         return analyticsOutboxRepository.findAllByEventStatus(EventStatus.NEW);
     }
 
+    @Transactional
     @Override
     public void processAnalyticsEvents() {
         List<AnalyticsOutbox> allByEventStatus = analyticsOutboxRepository.findAllByEventStatus(EventStatus.NEW);
@@ -68,12 +69,13 @@ public class AnalyticsOutboxServiceImpl implements AnalyticsOutboxService {
             }
         }
 
-        processedEvents.forEach(proc -> proc.setEventStatus(EventStatus.COMPLETED));
+        updateEventStatus(processedEvents);
         analyticsOutboxRepository.saveAll(processedEvents);
     }
 
     private AnalyticsKafkaEvent getAnalyticsKafkaProducer(AnalyticsOutbox analyticsOutbox) {
         return AnalyticsKafkaEvent.builder()
+                .id(analyticsOutbox.getId())
                 .productId(analyticsOutbox.getProductId())
                 .orderId(analyticsOutbox.getOrderId())
                 .userId(analyticsOutbox.getUserId())
