@@ -41,7 +41,7 @@ public class OrderController {
         return ResponseEntity.ok(orderService.getAllOrdersByOrderId(page, size, sortBy, ascending, orderId));
     }
 
-    @GetMapping("/{user_id}")
+    @GetMapping("/users/{user_id}")
     public ResponseEntity<Page<OrderResponse>> getAllOrdersByUserId(
             @PathVariable("user_id") UUID userId,
             @RequestParam(defaultValue = "0") int page,
