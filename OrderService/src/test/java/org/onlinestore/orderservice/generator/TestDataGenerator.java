@@ -137,6 +137,7 @@ public class TestDataGenerator {
         return CreateProduct.builder()
                 .productName(PRODUCT_NAME)
                 .quantity(QUANTITY)
+                .traceId(UUID.randomUUID())
                 .build();
     }
 
@@ -231,6 +232,7 @@ public class TestDataGenerator {
                         .setName(PRODUCT_NAME)
                         .setQuantity(QUANTITY)
                         .build())
+                .setTraceId(UUID.randomUUID().toString())
                 .build();
     }
 

@@ -31,6 +31,7 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyInt;
+import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
@@ -91,7 +92,7 @@ class OrderServiceImplTest {
         when(basketService.getBasketCurrentUser()).thenReturn(basketResponse);
         when(basketProductMapper.basketProductsResponseToBasketProducts(any()))
                 .thenReturn(List.of(basketProduct));
-        when(inventoryGrpcClient.getListProductByName(any())).thenReturn(productBatchGrpcResponse);
+        when(inventoryGrpcClient.getListProductByName(any(), anyString())).thenReturn(productBatchGrpcResponse);
         when(inventoryOutboxService.createInventoryOutbox(any(), anyInt()))
                 .thenReturn(inventoryOutbox);
         when(orderRepository.saveAndFlush(any())).thenReturn(order);
@@ -105,7 +106,7 @@ class OrderServiceImplTest {
         verify(basketService, times(1)).getBasketCurrentUser();
         verify(basketProductMapper, times(1))
                 .basketProductsResponseToBasketProducts(any());
-        verify(inventoryGrpcClient, times(1)).getListProductByName(any());
+        verify(inventoryGrpcClient, times(1)).getListProductByName(any(), anyString());
         verify(inventoryOutboxService, times(1)).createInventoryOutbox(any(), anyInt());
         verify(basketService, times(1)).clearBasket();
         verify(orderRepository, times(1)).saveAndFlush(any());
@@ -125,7 +126,7 @@ class OrderServiceImplTest {
         when(basketService.getBasketCurrentUser()).thenReturn(basketResponse);
         when(basketProductMapper.basketProductsResponseToBasketProducts(any()))
                 .thenReturn(List.of(basketProduct));
-        when(inventoryGrpcClient.getListProductByName(any())).thenReturn(grpcResponse);
+        when(inventoryGrpcClient.getListProductByName(any(), anyString())).thenReturn(grpcResponse);
 
         assertThrows(RuntimeException.class, () -> orderService.createOrder());
 
@@ -133,7 +134,7 @@ class OrderServiceImplTest {
         verify(basketService, times(1)).getBasketCurrentUser();
         verify(basketProductMapper, times(1))
                 .basketProductsResponseToBasketProducts(any());
-        verify(inventoryGrpcClient, times(1)).getListProductByName(any());
+        verify(inventoryGrpcClient, times(1)).getListProductByName(any(), anyString());
         verify(inventoryOutboxService, never()).createInventoryOutbox(any(), anyInt());
         verify(basketService, never()).clearBasket();
         verify(orderRepository, never()).saveAndFlush(any());

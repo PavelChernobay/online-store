@@ -53,15 +53,9 @@ class OrderServiceImplTest {
 
     @Test
     void createOrderSuccess() {
-        when(orderRepository.save(any())).thenReturn(order);
-        when(orderMapper.orderToOrderResponse(any())).thenReturn(orderResponse);
-
-        OrderResponse result = orderService.createOrder(analyticsKafkaEvent);
-
-        assertThat(result).isEqualTo(orderResponse);
+        orderService.createOrder(analyticsKafkaEvent);
 
         verify(orderRepository, times(1)).save(any());
-        verify(orderMapper, times(1)).orderToOrderResponse(any());
     }
 
     @Test

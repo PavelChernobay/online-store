@@ -19,6 +19,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.transaction.annotation.Transactional;
 
 import static org.mockito.ArgumentMatchers.anyList;
+import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
@@ -68,7 +69,7 @@ class OrderControllerTest {
 
     @Test
     void createOrder() throws Exception {
-        when(inventoryGrpcClient.getListProductByName(anyList())).thenReturn(productBatchGrpcResponse);
+        when(inventoryGrpcClient.getListProductByName(anyList(), anyString())).thenReturn(productBatchGrpcResponse);
 
         mockMvc.perform(post("/api/orders")
                 .contentType(MediaType.APPLICATION_JSON))

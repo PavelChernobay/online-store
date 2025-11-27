@@ -12,7 +12,7 @@ import java.time.LocalDateTime;
 @RestControllerAdvice
 public class GlobalExceptionHandler {
 
-    public static final String INVALID_LOGIN_OR_PASSWORD = "Неверный логин или пароль";
+    private static final String INVALID_LOGIN_OR_PASSWORD = "Неверный логин или пароль";
 
     @ExceptionHandler(InvalidRefreshTokenException.class)
     public ResponseEntity<ErrorResponse> handleInvalidRefreshTokenException(InvalidRefreshTokenException ex) {

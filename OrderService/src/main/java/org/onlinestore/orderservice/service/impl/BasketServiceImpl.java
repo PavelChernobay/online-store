@@ -1,6 +1,7 @@
 package org.onlinestore.orderservice.service.impl;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.onlinestore.orderservice.dto.BasketResponse;
 import org.onlinestore.orderservice.dto.CreateProduct;
 import org.onlinestore.orderservice.dto.BasketProductResponse;
@@ -25,6 +26,7 @@ import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class BasketServiceImpl implements BasketService {
 
     private final BasketRepository basketRepository;
@@ -37,7 +39,12 @@ public class BasketServiceImpl implements BasketService {
     @Transactional
     @Override
     public BasketResponse addProductToBasket(CreateProduct createProduct) {
+        createProduct.setTraceId(UUID.randomUUID());
+
         User user = userService.getCurrentUser();
+
+        log.info("trace_id = {}, запрос на добавления продукта в корзину.", createProduct.getTraceId());
+
         Basket basket = basketRepository.findByUserId(user.getId())
                 .orElseGet(() -> {
                     Basket newBasket = new Basket();
@@ -69,6 +76,8 @@ public class BasketServiceImpl implements BasketService {
                 .map(BasketProduct::getTotalSum)
                 .reduce(BigDecimal.ZERO, BigDecimal::add);
         basket.setTotalSum(totalSum);
+
+        log.info("trace_id = {}, товар успешно добавлен в корзину", createProduct.getTraceId());
 
         return basketMapper.basketToBasketResponse(basketRepository.save(basket));
     }

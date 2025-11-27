@@ -4,12 +4,13 @@ import com.google.protobuf.Empty;
 import io.grpc.Status;
 import io.grpc.stub.StreamObserver;
 import lombok.RequiredArgsConstructor;
-import org.onlinestore.orderservice.grpc.InventoryServiceGrpc;
-import org.onlinestore.orderservice.grpc.ProductBatchGrpcRequest;
-import org.onlinestore.orderservice.grpc.ProductBatchGrpcResponse;
-import org.onlinestore.orderservice.grpc.ProductGrpcRequest;
-import org.onlinestore.orderservice.grpc.ProductGrpcResponse;
-import org.onlinestore.orderservice.grpc.ProductQuantityBatch;
+import lombok.extern.slf4j.Slf4j;
+import org.onlinestore.inventoryservice.grpc.InventoryServiceGrpc;
+import org.onlinestore.inventoryservice.grpc.ProductBatchGrpcRequest;
+import org.onlinestore.inventoryservice.grpc.ProductBatchGrpcResponse;
+import org.onlinestore.inventoryservice.grpc.ProductGrpcRequest;
+import org.onlinestore.inventoryservice.grpc.ProductGrpcResponse;
+import org.onlinestore.inventoryservice.grpc.ProductQuantityBatch;
 import org.onlinetstore.inventoryservice.entity.Product;
 import org.onlinetstore.inventoryservice.service.ProductService;
 import org.onlinetstore.inventoryservice.validate.ProductValidate;
@@ -21,6 +22,7 @@ import java.util.Objects;
 
 @GrpcService
 @RequiredArgsConstructor
+@Slf4j
 public class InventoryGrpcService extends InventoryServiceGrpc.InventoryServiceImplBase {
 
     private final ProductValidate productValidate;
@@ -28,31 +30,39 @@ public class InventoryGrpcService extends InventoryServiceGrpc.InventoryServiceI
 
     @Override
     public void getProductByName(ProductGrpcRequest request, StreamObserver<ProductGrpcResponse> responseObserver) {
+        log.info("trace_id = {}, получен запрос на добавления товара.", request.getTraceId());
+
         Product product = productValidate.checkProductByName(request.getName());
 
         if (product == null) {
+            log.warn("trace_id = {}, продукт не найден", request.getTraceId());
             responseObserver.onError(Status.NOT_FOUND.asException());
             return;
         }
 
-        ProductGrpcResponse productGrpcResponse = getProductGrpcResponse(product);
+        ProductGrpcResponse productGrpcResponse = getProductGrpcResponse(product, request.getTraceId());
+
+        log.info("trace_id = {}, отправляем ответ со склада.", request.getTraceId());
 
         responseObserver.onNext(productGrpcResponse);
         responseObserver.onCompleted();
     }
 
-    private ProductGrpcResponse getProductGrpcResponse(Product product) {
+    private ProductGrpcResponse getProductGrpcResponse(Product product, String traceId) {
         return ProductGrpcResponse.newBuilder()
                 .setId(product.getId().toString())
                 .setName(product.getName())
                 .setQuantity(product.getQuantity())
                 .setPrice(product.getPrice().doubleValue())
                 .setSale(product.getSale())
+                .setTraceId(traceId)
                 .build();
     }
 
     @Override
     public void getListProductByName(ProductBatchGrpcRequest request, StreamObserver<ProductBatchGrpcResponse> responseObserver) {
+        log.info("trace_id = {}, получен запрос на проверку списка продуктов.", request.getTraceId());
+
         List<String> notFoundProducts = new ArrayList<>();
 
         List<ProductGrpcResponse> grpcResponseList = request.getProductNameList().stream()
@@ -64,15 +74,16 @@ public class InventoryGrpcService extends InventoryServiceGrpc.InventoryServiceI
                         return null;
                     }
 
-                    return getProductGrpcResponse(product);
+                    return getProductGrpcResponse(product, request.getTraceId());
                 })
                 .filter(Objects::nonNull)
                 .toList();
 
         if (!notFoundProducts.isEmpty()) {
+            log.warn("trace_id = {}, продукты не найдены: {}", request.getTraceId(), notFoundProducts);
             responseObserver.onError(
                     Status.NOT_FOUND
-                            .withDescription(String.format("Продуктов %s нет в продаже",
+                            .withDescription(String.format("Продуктов %s нет в продаже.",
                                     String.join(" ,", notFoundProducts)))
                             .asException()
             );
@@ -81,7 +92,10 @@ public class InventoryGrpcService extends InventoryServiceGrpc.InventoryServiceI
 
         ProductBatchGrpcResponse grpcResponse = ProductBatchGrpcResponse.newBuilder()
                 .addAllProductResponse(grpcResponseList)
+                .setTraceId(request.getTraceId())
                 .build();
+
+        log.info("trace_id = {}, ответ со склада.", request.getTraceId());
 
         responseObserver.onNext(grpcResponse);
         responseObserver.onCompleted();
@@ -89,9 +103,12 @@ public class InventoryGrpcService extends InventoryServiceGrpc.InventoryServiceI
 
     @Override
     public void updateProductQuantities(ProductQuantityBatch request, StreamObserver<Empty> responseObserver) {
+        log.info("trace_id = {}, запрос на обновления количества продуктов", request.getTraceId());
         request.getQuantityProductsList().forEach(product ->{
             productService.updateProductQuantities(product.getProductName(), product.getQuantity());
         });
+
+        log.info("trace_id = {}, количество продуктов успешно обновлено.", request.getTraceId());
 
         responseObserver.onNext(Empty.getDefaultInstance());
         responseObserver.onCompleted();

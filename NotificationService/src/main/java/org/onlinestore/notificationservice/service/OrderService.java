@@ -8,7 +8,7 @@ import java.util.UUID;
 
 public interface OrderService {
 
-    OrderResponse createOrder(AnalyticsKafkaEvent analyticsKafkaEvent);
+    void createOrder(AnalyticsKafkaEvent analyticsKafkaEvent);
 
     Page<OrderResponse> getAllOrders(int page, int size, String sortBy, boolean ascending);
 

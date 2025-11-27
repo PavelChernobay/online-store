@@ -23,10 +23,11 @@ public class InventoryGrpcClient {
     @GrpcClient("inventory-service")
     private InventoryServiceGrpc.InventoryServiceBlockingStub blockingStub;
 
-    public ProductGrpcResponse getProductByName(String name) {
+    public ProductGrpcResponse getProductByName(String name, String traceId) {
         try {
             ProductGrpcRequest productRequest = ProductGrpcRequest.newBuilder()
                     .setName(name)
+                    .setTraceId(traceId)
                     .build();
 
             return blockingStub.getProductByName(productRequest);
@@ -35,10 +36,11 @@ public class InventoryGrpcClient {
         }
     }
 
-    public ProductBatchGrpcResponse getListProductByName(List<String> listName) {
+    public ProductBatchGrpcResponse getListProductByName(List<String> listName, String traceId) {
         try {
             ProductBatchGrpcRequest request = ProductBatchGrpcRequest.newBuilder()
                     .addAllProductName(listName)
+                    .setTraceId(traceId)
                     .build();
 
             return blockingStub.getListProductByName(request);
@@ -47,7 +49,7 @@ public class InventoryGrpcClient {
         }
     }
 
-    public void updateProductQuantities(List<InventoryOutbox> inventoryOutboxes) {
+    public void updateProductQuantities(List<InventoryOutbox> inventoryOutboxes, String traceId) {
         try {
             if (inventoryOutboxes.isEmpty()) {
                 return;
@@ -62,10 +64,14 @@ public class InventoryGrpcClient {
 
             ProductQuantityBatch quantityBatch = ProductQuantityBatch.newBuilder()
                     .addAllQuantityProducts(quantityRequests)
+                    .setTraceId(traceId)
                     .build();
+
+            log.info("trace_id = {}, отправка запроса на обновления количества продуктов", traceId);
             blockingStub.updateProductQuantities(quantityBatch);
+            log.info("trace_id = {}, количество продуктов успешно обновлено.", traceId);
         } catch (Exception ex) {
-            log.warn("Ошибка обновления количества продуктов", ex);
+            log.warn("trace_id = {}, ошибка обновления количества продуктов.", traceId, ex);
         }
     }
 }

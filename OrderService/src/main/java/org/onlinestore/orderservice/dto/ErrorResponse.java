@@ -9,7 +9,8 @@ import java.time.LocalDateTime;
 public record ErrorResponse(
         int statusCode,
         String message,
-        @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd.MM.yyyy HH:mm:ss")
+        @JsonFormat(pattern = DATE_TIME_PATTERN)
         LocalDateTime timestamp
 ) {
+        private static final String DATE_TIME_PATTERN = "dd.MM.yyyy HH:mm:ss";
 }

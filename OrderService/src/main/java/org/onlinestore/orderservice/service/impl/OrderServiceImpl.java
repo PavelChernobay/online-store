@@ -1,10 +1,11 @@
 package org.onlinestore.orderservice.service.impl;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.onlinestore.orderservice.dto.BasketResponse;
 import org.onlinestore.orderservice.dto.OrderResponse;
-import org.onlinestore.orderservice.entity.Order;
 import org.onlinestore.orderservice.entity.BasketProduct;
+import org.onlinestore.orderservice.entity.Order;
 import org.onlinestore.orderservice.entity.OrderProduct;
 import org.onlinestore.orderservice.entity.Status;
 import org.onlinestore.orderservice.entity.User;
@@ -12,8 +13,8 @@ import org.onlinestore.orderservice.exception.ProductNotFoundException;
 import org.onlinestore.orderservice.grpc.ProductBatchGrpcResponse;
 import org.onlinestore.orderservice.grpc.ProductGrpcResponse;
 import org.onlinestore.orderservice.grpc.client.InventoryGrpcClient;
-import org.onlinestore.orderservice.mapper.OrderMapper;
 import org.onlinestore.orderservice.mapper.BasketProductMapper;
+import org.onlinestore.orderservice.mapper.OrderMapper;
 import org.onlinestore.orderservice.repository.OrderRepository;
 import org.onlinestore.orderservice.service.AnalyticsOutboxService;
 import org.onlinestore.orderservice.service.BasketService;
@@ -31,6 +32,7 @@ import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class OrderServiceImpl implements OrderService {
 
     private final OrderRepository orderRepository;
@@ -54,6 +56,8 @@ public class OrderServiceImpl implements OrderService {
                 .totalSum(basketResponse.totalSum())
                 .build();
 
+        String traceId = UUID.randomUUID().toString();
+
         try {
             List<BasketProduct> basketProducts = basketProductMapper
                     .basketProductsResponseToBasketProducts(basketResponse.products());
@@ -61,16 +65,21 @@ public class OrderServiceImpl implements OrderService {
                     .map(BasketProduct::getName)
                     .toList();
 
-            ProductBatchGrpcResponse inventoryResponse = inventoryGrpcClient.getListProductByName(listName);
+            log.info("trace_id = {}, отправка запроса на склад на проверку количества продуктов", traceId);
+
+            ProductBatchGrpcResponse inventoryResponse = inventoryGrpcClient.getListProductByName(listName, traceId);
 
             validateQuantityProducts(inventoryResponse, basketProducts);
 
             buildOrderProducts(basketProducts, order);
             basketProducts.forEach(product ->
                     inventoryOutboxService.createInventoryOutbox(product.getName(), product.getQuantity()));
+
+            log.info("trace_id = {}, продукты успешно добавлены в заказ", traceId);
         } catch (RuntimeException ex) {
             order.setStatus(Status.FAILED);
             orderRepository.save(order);
+            log.warn("trace_id = {}, ошибка при создании заказа: {}", traceId, ex.getMessage());
             throw ex;
         }
 
@@ -78,6 +87,8 @@ public class OrderServiceImpl implements OrderService {
 
         Order saveOrder = orderRepository.saveAndFlush(order);
         analyticsOutboxService.createAnalyticsOutbox(saveOrder);
+
+        log.info("trace_id = {}, заказ успешно создан.", traceId);
 
         return orderMapper.orderToOrderResponse(saveOrder);
     }

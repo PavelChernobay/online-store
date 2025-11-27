@@ -14,6 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
@@ -61,11 +62,14 @@ public class AnalyticsOutboxServiceImpl implements AnalyticsOutboxService {
         List<AnalyticsOutbox> processedEvents = new ArrayList<>();
 
         for (AnalyticsOutbox event : allByEventStatus) {
+            String traceId = UUID.randomUUID().toString();
             try {
-                kafkaProducerService.publishAnalytics(getAnalyticsKafkaProducer(event));
+                log.info("trace_id = {}, отправляем события в kafka.", traceId);
+                kafkaProducerService.publishAnalytics(getAnalyticsKafkaProducer(event, traceId));
+                log.info("trace_id = {}, событие успешно отправлено в kafka.", traceId);
                 processedEvents.add(event);
-            } catch (Exception e) {
-                log.warn("Ошибка при отправке события в kafka: {}", event.getId(), e);
+            } catch (Exception ex) {
+                log.warn("trace_id = {}, ошибка при отправке события в kafka: {}", traceId, event.getId(), ex);
             }
         }
 
@@ -73,7 +77,7 @@ public class AnalyticsOutboxServiceImpl implements AnalyticsOutboxService {
         analyticsOutboxRepository.saveAll(processedEvents);
     }
 
-    private AnalyticsKafkaEvent getAnalyticsKafkaProducer(AnalyticsOutbox analyticsOutbox) {
+    private AnalyticsKafkaEvent getAnalyticsKafkaProducer(AnalyticsOutbox analyticsOutbox, String traceId) {
         return AnalyticsKafkaEvent.builder()
                 .id(analyticsOutbox.getId())
                 .productId(analyticsOutbox.getProductId())
@@ -83,6 +87,7 @@ public class AnalyticsOutboxServiceImpl implements AnalyticsOutboxService {
                 .price(analyticsOutbox.getPrice())
                 .sale(analyticsOutbox.getSale())
                 .totalPrice(analyticsOutbox.getTotalPrice())
+                .traceId(traceId)
                 .build();
     }
 

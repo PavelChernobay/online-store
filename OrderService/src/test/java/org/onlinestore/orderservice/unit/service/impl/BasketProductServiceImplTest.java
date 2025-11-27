@@ -44,7 +44,7 @@ class BasketProductServiceImplTest {
 
     @Test
     void createProductItem() {
-        when(inventoryGrpcClient.getProductByName(anyString())).thenReturn(productGrpcResponse);
+        when(inventoryGrpcClient.getProductByName(anyString(), anyString())).thenReturn(productGrpcResponse);
 
         BasketProduct result = basketProductService.createProductItem(createProduct);
 
@@ -53,7 +53,7 @@ class BasketProductServiceImplTest {
         assertThat(result.getPrice().compareTo(basketProduct.getPrice())).isZero();
         assertThat(result.getTotalSum().compareTo(basketProduct.getTotalSum())).isZero();
 
-        verify(inventoryGrpcClient, times(1)).getProductByName(anyString());
+        verify(inventoryGrpcClient, times(1)).getProductByName(anyString(), anyString());
     }
 
     @Test
@@ -62,7 +62,7 @@ class BasketProductServiceImplTest {
                 .setName(TestDataGenerator.PRODUCT_NAME)
                 .setQuantity(0)
                 .build();
-        when(inventoryGrpcClient.getProductByName(anyString())).thenReturn(grpcResponse);
+        when(inventoryGrpcClient.getProductByName(anyString(), anyString())).thenReturn(grpcResponse);
 
         ProductNotFoundException exception = assertThrows(ProductNotFoundException.class,
                 () -> basketProductService.createProductItem(createProduct));
@@ -71,7 +71,7 @@ class BasketProductServiceImplTest {
 
         assertEquals(expected, exception.getMessage());
 
-        verify(inventoryGrpcClient, times(1)).getProductByName(anyString());
+        verify(inventoryGrpcClient, times(1)).getProductByName(anyString(), anyString());
     }
 
     @Test
@@ -79,7 +79,7 @@ class BasketProductServiceImplTest {
         ProductGrpcResponse grpcResponse = ProductGrpcResponse.newBuilder()
                 .setQuantity(3)
                 .build();
-        when(inventoryGrpcClient.getProductByName(anyString())).thenReturn(grpcResponse);
+        when(inventoryGrpcClient.getProductByName(anyString(), anyString())).thenReturn(grpcResponse);
 
         ProductNotFoundException exception = assertThrows(ProductNotFoundException.class,
                 () -> basketProductService.createProductItem(createProduct));
@@ -88,7 +88,7 @@ class BasketProductServiceImplTest {
 
         assertEquals(expected, exception.getMessage());
 
-        verify(inventoryGrpcClient, times(1)).getProductByName(anyString());
+        verify(inventoryGrpcClient, times(1)).getProductByName(anyString(), anyString());
     }
 
 }

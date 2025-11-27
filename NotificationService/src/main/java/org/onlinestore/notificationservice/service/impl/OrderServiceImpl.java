@@ -1,6 +1,7 @@
 package org.onlinestore.notificationservice.service.impl;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.onlinestore.notificationservice.dto.AnalyticsKafkaEvent;
 import org.onlinestore.notificationservice.dto.OrderResponse;
 import org.onlinestore.notificationservice.entity.Order;
@@ -19,13 +20,16 @@ import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class OrderServiceImpl implements OrderService {
 
     private final OrderRepository orderRepository;
     private final OrderMapper orderMapper;
 
     @Override
-    public OrderResponse createOrder(AnalyticsKafkaEvent consumer) {
+    public void createOrder(AnalyticsKafkaEvent consumer) {
+        log.info("trace_id = {}, получено событие в kafka", consumer.traceId());
+
         Order order = Order.builder()
                 .orderId(consumer.orderId())
                 .productId(consumer.productId())
@@ -36,7 +40,9 @@ public class OrderServiceImpl implements OrderService {
                 .totalPrice(consumer.totalPrice())
                 .build();
 
-        return orderMapper.orderToOrderResponse(orderRepository.save(order));
+        orderRepository.save(order);
+
+        log.info("trace_id = {}, событие обработано", consumer.traceId());
     }
 
 

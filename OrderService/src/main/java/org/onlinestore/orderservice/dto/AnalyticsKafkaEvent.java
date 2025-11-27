@@ -14,6 +14,7 @@ public record AnalyticsKafkaEvent(
         Integer quantity,
         BigDecimal price,
         Integer sale,
-        BigDecimal totalPrice
+        BigDecimal totalPrice,
+        String traceId
 ) {
 }
