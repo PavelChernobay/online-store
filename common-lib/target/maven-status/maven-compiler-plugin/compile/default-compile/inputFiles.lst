@@ -1,0 +1,14 @@
+/Users/pavelchernobai/Java/ProjectOnlineStore/common-lib/target/generated-sources/protobuf/grpc-java/org/onlinestore/common/grpc/InventoryServiceGrpc.java
+/Users/pavelchernobai/Java/ProjectOnlineStore/common-lib/target/generated-sources/protobuf/java/org/onlinestore/common/grpc/ProductBatchGrpcRequest.java
+/Users/pavelchernobai/Java/ProjectOnlineStore/common-lib/target/generated-sources/protobuf/java/org/onlinestore/common/grpc/ProductBatchGrpcRequestOrBuilder.java
+/Users/pavelchernobai/Java/ProjectOnlineStore/common-lib/target/generated-sources/protobuf/java/org/onlinestore/common/grpc/ProductBatchGrpcResponse.java
+/Users/pavelchernobai/Java/ProjectOnlineStore/common-lib/target/generated-sources/protobuf/java/org/onlinestore/common/grpc/ProductBatchGrpcResponseOrBuilder.java
+/Users/pavelchernobai/Java/ProjectOnlineStore/common-lib/target/generated-sources/protobuf/java/org/onlinestore/common/grpc/ProductGrpcRequest.java
+/Users/pavelchernobai/Java/ProjectOnlineStore/common-lib/target/generated-sources/protobuf/java/org/onlinestore/common/grpc/ProductGrpcRequestOrBuilder.java
+/Users/pavelchernobai/Java/ProjectOnlineStore/common-lib/target/generated-sources/protobuf/java/org/onlinestore/common/grpc/ProductGrpcResponse.java
+/Users/pavelchernobai/Java/ProjectOnlineStore/common-lib/target/generated-sources/protobuf/java/org/onlinestore/common/grpc/ProductGrpcResponseOrBuilder.java
+/Users/pavelchernobai/Java/ProjectOnlineStore/common-lib/target/generated-sources/protobuf/java/org/onlinestore/common/grpc/ProductProto.java
+/Users/pavelchernobai/Java/ProjectOnlineStore/common-lib/target/generated-sources/protobuf/java/org/onlinestore/common/grpc/ProductQuantityBatch.java
+/Users/pavelchernobai/Java/ProjectOnlineStore/common-lib/target/generated-sources/protobuf/java/org/onlinestore/common/grpc/ProductQuantityBatchOrBuilder.java
+/Users/pavelchernobai/Java/ProjectOnlineStore/common-lib/target/generated-sources/protobuf/java/org/onlinestore/common/grpc/ProductQuantityRequest.java
+/Users/pavelchernobai/Java/ProjectOnlineStore/common-lib/target/generated-sources/protobuf/java/org/onlinestore/common/grpc/ProductQuantityRequestOrBuilder.java

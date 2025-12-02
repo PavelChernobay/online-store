@@ -2,10 +2,10 @@ package org.onlinestore.orderservice.service.impl;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.onlinestore.common.grpc.ProductGrpcResponse;
 import org.onlinestore.orderservice.dto.CreateProduct;
 import org.onlinestore.orderservice.entity.BasketProduct;
 import org.onlinestore.orderservice.exception.ProductNotFoundException;
-import org.onlinestore.orderservice.grpc.ProductGrpcResponse;
 import org.onlinestore.orderservice.grpc.client.InventoryGrpcClient;
 import org.onlinestore.orderservice.service.BasketProductService;
 import org.springframework.stereotype.Service;

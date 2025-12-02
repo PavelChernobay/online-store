@@ -4,10 +4,9 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>org.onlinetstore</groupId>
+        <groupId>org.onlinestore</groupId>
         <artifactId>onlinestore</artifactId>
         <version>0.0.1</version>
-        <relativePath>../pom.xml</relativePath>
     </parent>
 
     <groupId>org.onlinetstore</groupId>
@@ -15,6 +14,15 @@
     <version>0.0.1-SNAPSHOT</version>
     <name>NotificationService</name>
     <description>NotificationService</description>
+    <packaging>jar</packaging>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.onlinestore</groupId>
+            <artifactId>common-lib</artifactId>
+            <version>0.0.1</version>
+        </dependency>
+    </dependencies>
 
     <build>
         <finalName>notification-service</finalName>

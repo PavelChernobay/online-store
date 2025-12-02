@@ -1,5 +1,7 @@
 package org.onlinestore.orderservice.generator;
 
+import org.onlinestore.common.grpc.ProductBatchGrpcResponse;
+import org.onlinestore.common.grpc.ProductGrpcResponse;
 import org.onlinestore.orderservice.dto.BasketProductResponse;
 import org.onlinestore.orderservice.dto.BasketResponse;
 import org.onlinestore.orderservice.dto.CreateProduct;
@@ -18,8 +20,7 @@ import org.onlinestore.orderservice.entity.OrderProduct;
 import org.onlinestore.orderservice.entity.Role;
 import org.onlinestore.orderservice.entity.Status;
 import org.onlinestore.orderservice.entity.User;
-import org.onlinestore.orderservice.grpc.ProductBatchGrpcResponse;
-import org.onlinestore.orderservice.grpc.ProductGrpcResponse;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 

@@ -2,6 +2,8 @@ package org.onlinestore.orderservice.service.impl;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.onlinestore.common.grpc.ProductBatchGrpcResponse;
+import org.onlinestore.common.grpc.ProductGrpcResponse;
 import org.onlinestore.orderservice.dto.BasketResponse;
 import org.onlinestore.orderservice.dto.OrderResponse;
 import org.onlinestore.orderservice.entity.BasketProduct;
@@ -10,8 +12,6 @@ import org.onlinestore.orderservice.entity.OrderProduct;
 import org.onlinestore.orderservice.entity.Status;
 import org.onlinestore.orderservice.entity.User;
 import org.onlinestore.orderservice.exception.ProductNotFoundException;
-import org.onlinestore.orderservice.grpc.ProductBatchGrpcResponse;
-import org.onlinestore.orderservice.grpc.ProductGrpcResponse;
 import org.onlinestore.orderservice.grpc.client.InventoryGrpcClient;
 import org.onlinestore.orderservice.mapper.BasketProductMapper;
 import org.onlinestore.orderservice.mapper.OrderMapper;

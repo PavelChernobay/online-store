@@ -3,7 +3,7 @@ syntax = "proto3";
 import "google/protobuf/empty.proto";
 
 option java_multiple_files = true;
-option java_package = "org.onlinestore.inventoryservice.grpc";
+option java_package = "org.onlinestore.common.grpc";
 option java_outer_classname = "ProductProto";
 
 service InventoryService {
@@ -19,7 +19,7 @@ service InventoryService {
 message ProductGrpcRequest {
 
   string name = 1;
-  string traceId = 2;
+  string trace_id = 2;
 
 }
 
@@ -30,7 +30,7 @@ message ProductGrpcResponse {
   int32 quantity = 3;
   double price = 4;
   int32 sale = 5;
-  string traceId = 6;
+  string trace_id = 6;
 
 }
 

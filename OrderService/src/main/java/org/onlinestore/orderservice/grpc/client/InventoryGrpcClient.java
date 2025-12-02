@@ -3,15 +3,16 @@ package org.onlinestore.orderservice.grpc.client;
 import io.grpc.StatusRuntimeException;
 import lombok.extern.slf4j.Slf4j;
 import net.devh.boot.grpc.client.inject.GrpcClient;
+
+import org.onlinestore.common.grpc.InventoryServiceGrpc;
+import org.onlinestore.common.grpc.ProductBatchGrpcRequest;
+import org.onlinestore.common.grpc.ProductBatchGrpcResponse;
+import org.onlinestore.common.grpc.ProductGrpcRequest;
+import org.onlinestore.common.grpc.ProductGrpcResponse;
+import org.onlinestore.common.grpc.ProductQuantityBatch;
+import org.onlinestore.common.grpc.ProductQuantityRequest;
 import org.onlinestore.orderservice.entity.InventoryOutbox;
 import org.onlinestore.orderservice.exception.ProductNotFoundException;
-import org.onlinestore.orderservice.grpc.InventoryServiceGrpc;
-import org.onlinestore.orderservice.grpc.ProductBatchGrpcRequest;
-import org.onlinestore.orderservice.grpc.ProductBatchGrpcResponse;
-import org.onlinestore.orderservice.grpc.ProductGrpcRequest;
-import org.onlinestore.orderservice.grpc.ProductGrpcResponse;
-import org.onlinestore.orderservice.grpc.ProductQuantityBatch;
-import org.onlinestore.orderservice.grpc.ProductQuantityRequest;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
