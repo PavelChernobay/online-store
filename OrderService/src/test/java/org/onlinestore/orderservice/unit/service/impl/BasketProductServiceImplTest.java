@@ -6,11 +6,11 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.onlinestore.common.grpc.ProductGrpcResponse;
 import org.onlinestore.orderservice.dto.CreateProduct;
 import org.onlinestore.orderservice.entity.BasketProduct;
 import org.onlinestore.orderservice.exception.ProductNotFoundException;
 import org.onlinestore.orderservice.generator.TestDataGenerator;
-import org.onlinestore.orderservice.grpc.ProductGrpcResponse;
 import org.onlinestore.orderservice.grpc.client.InventoryGrpcClient;
 import org.onlinestore.orderservice.service.impl.BasketProductServiceImpl;
 
