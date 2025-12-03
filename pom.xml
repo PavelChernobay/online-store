@@ -6,7 +6,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>3.5.7</version>
+        <version>4.0.0</version>
         <relativePath/>
     </parent>
 
@@ -14,7 +14,6 @@
     <artifactId>onlinestore</artifactId>
     <version>0.0.1</version>
     <packaging>pom</packaging>
-    <name>Common Library for OnlineStore</name>
 
     <modules>
         <module>OrderService</module>
@@ -24,7 +23,7 @@
     </modules>
 
     <properties>
-        <spring.boot.version>3.5.7</spring.boot.version>
+        <spring.boot.version>4.0.0</spring.boot.version>
         <java.version>17</java.version>
         <grpc.version>1.76.0</grpc.version>
         <protobuf-java.version>4.31.1</protobuf-java.version>
@@ -38,8 +37,8 @@
         <hibernate-validator.version>9.1.0.Final</hibernate-validator.version>
     </properties>
 
-
     <dependencyManagement>
+
         <dependencies>
 
             <dependency>
@@ -47,7 +46,6 @@
                 <artifactId>spring-boot-dependencies</artifactId>
                 <version>${spring.boot.version}</version>
                 <type>pom</type>
-                <scope>import</scope>
             </dependency>
 
             <dependency>
@@ -144,7 +142,50 @@
                 <scope>test</scope>
             </dependency>
 
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-test</artifactId>
+                <version>${spring.boot.version}</version>
+                <scope>test</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>org.springframework.kafka</groupId>
+                <artifactId>spring-kafka-test</artifactId>
+                <version>${kafka.version}</version>
+                <scope>test</scope>
+            </dependency>
+
+
         </dependencies>
+
     </dependencyManagement>
+
+    <build>
+
+        <finalName>onlinestore</finalName>
+
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <annotationProcessorPaths>
+                        <path>
+                            <groupId>org.projectlombok</groupId>
+                            <artifactId>lombok</artifactId>
+                            <version>${lombok.version}</version>
+                        </path>
+                        <path>
+                            <groupId>org.mapstruct</groupId>
+                            <artifactId>mapstruct-processor</artifactId>
+                            <version>${mapstruct.version}</version>
+                        </path>
+                    </annotationProcessorPaths>
+                </configuration>
+            </plugin>
+
+        </plugins>
+    </build>
 
 </project>
