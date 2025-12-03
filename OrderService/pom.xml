@@ -17,7 +17,7 @@
 
     <properties>
         <grpc-client.version>3.1.0.RELEASE</grpc-client.version>
-        <jsonwebtoken.version>0.13.0</jsonwebtoken.version>
+        <jsonwebtoken.version>0.12.5</jsonwebtoken.version>
     </properties>
 
 
@@ -111,11 +111,6 @@
         </dependency>
 
         <dependency>
-            <groupId>com.fasterxml.jackson.core</groupId>
-            <artifactId>jackson-databind</artifactId>
-        </dependency>
-
-        <dependency>
             <groupId>org.hibernate.validator</groupId>
             <artifactId>hibernate-validator</artifactId>
         </dependency>
@@ -136,6 +131,12 @@
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
+
+<!--        <dependency>-->
+<!--            <groupId>org.springframework.boot</groupId>-->
+<!--            <artifactId>spring-boot-starter-webmvc-test</artifactId>-->
+<!--            <scope>test</scope>-->
+<!--        </dependency>-->
 
         <dependency>
             <groupId>com.h2database</groupId>

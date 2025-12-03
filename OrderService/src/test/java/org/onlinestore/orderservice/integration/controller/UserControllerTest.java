@@ -1,6 +1,5 @@
 package org.onlinestore.orderservice.integration.controller;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
 import org.onlinestore.orderservice.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,9 +34,6 @@ class UserControllerTest {
 
     @Autowired
     private UserRepository userRepository;
-
-    @Autowired
-    private ObjectMapper objectMapper;
 
     @Test
     void getAllUsers() throws Exception {

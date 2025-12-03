@@ -6,7 +6,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>4.0.0</version>
+        <version>3.5.7</version>
         <relativePath/>
     </parent>
 
@@ -23,7 +23,6 @@
     </modules>
 
     <properties>
-        <spring.boot.version>4.0.0</spring.boot.version>
         <java.version>17</java.version>
         <grpc.version>1.76.0</grpc.version>
         <protobuf-java.version>4.31.1</protobuf-java.version>
@@ -31,28 +30,13 @@
         <mapstruct.version>1.6.3</mapstruct.version>
         <h2database.version>2.4.240</h2database.version>
         <lombok.version>1.18.32</lombok.version>
-        <kafka.version>4.0.0</kafka.version>
         <postgresql.version>42.7.8</postgresql.version>
-        <jackson-databind.version>2.20.1</jackson-databind.version>
         <hibernate-validator.version>9.1.0.Final</hibernate-validator.version>
     </properties>
 
     <dependencyManagement>
 
         <dependencies>
-
-            <dependency>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-dependencies</artifactId>
-                <version>${spring.boot.version}</version>
-                <type>pom</type>
-            </dependency>
-
-            <dependency>
-                <groupId>org.springframework.kafka</groupId>
-                <artifactId>spring-kafka</artifactId>
-                <version>${kafka.version}</version>
-            </dependency>
 
             <dependency>
                 <groupId>org.flywaydb</groupId>
@@ -79,12 +63,6 @@
                 <artifactId>lombok</artifactId>
                 <version>${lombok.version}</version>
                 <optional>true</optional>
-            </dependency>
-
-            <dependency>
-                <groupId>com.fasterxml.jackson.core</groupId>
-                <artifactId>jackson-databind</artifactId>
-                <version>${jackson-databind.version}</version>
             </dependency>
 
             <dependency>
@@ -141,21 +119,6 @@
                 <version>${h2database.version}</version>
                 <scope>test</scope>
             </dependency>
-
-            <dependency>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-starter-test</artifactId>
-                <version>${spring.boot.version}</version>
-                <scope>test</scope>
-            </dependency>
-
-            <dependency>
-                <groupId>org.springframework.kafka</groupId>
-                <artifactId>spring-kafka-test</artifactId>
-                <version>${kafka.version}</version>
-                <scope>test</scope>
-            </dependency>
-
 
         </dependencies>
 
