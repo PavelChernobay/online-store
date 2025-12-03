@@ -1,6 +1,6 @@
 package org.onlinestore.notificationservice.generator;
 
-import org.onlinestore.notificationservice.dto.AnalyticsKafkaEvent;
+import dto.AnalyticsKafkaEvent;
 import org.onlinestore.notificationservice.dto.OrderResponse;
 import org.onlinestore.notificationservice.entity.Order;
 

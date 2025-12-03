@@ -1,8 +1,8 @@
 package org.onlinestore.notificationservice.service.impl;
 
+import dto.AnalyticsKafkaEvent;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.onlinestore.notificationservice.dto.AnalyticsKafkaEvent;
 import org.onlinestore.notificationservice.dto.OrderResponse;
 import org.onlinestore.notificationservice.entity.Order;
 import org.onlinestore.notificationservice.mapper.OrderMapper;

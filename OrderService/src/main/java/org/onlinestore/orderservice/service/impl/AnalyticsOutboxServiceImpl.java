@@ -1,8 +1,8 @@
 package org.onlinestore.orderservice.service.impl;
 
+import dto.AnalyticsKafkaEvent;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.onlinestore.orderservice.dto.AnalyticsKafkaEvent;
 import org.onlinestore.orderservice.entity.AnalyticsOutbox;
 import org.onlinestore.orderservice.entity.EventStatus;
 import org.onlinestore.orderservice.entity.Order;

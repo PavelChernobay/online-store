@@ -1,4 +1,4 @@
-package org.onlinestore.orderservice.dto;
+package dto;
 
 import lombok.Builder;
 

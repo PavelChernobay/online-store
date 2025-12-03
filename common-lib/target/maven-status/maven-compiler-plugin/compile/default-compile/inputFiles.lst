@@ -1,3 +1,4 @@
+/Users/pavelchernobai/Java/ProjectOnlineStore/common-lib/src/main/java/dto/AnalyticsKafkaEvent.java
 /Users/pavelchernobai/Java/ProjectOnlineStore/common-lib/target/generated-sources/protobuf/grpc-java/org/onlinestore/common/grpc/InventoryServiceGrpc.java
 /Users/pavelchernobai/Java/ProjectOnlineStore/common-lib/target/generated-sources/protobuf/java/org/onlinestore/common/grpc/ProductBatchGrpcRequest.java
 /Users/pavelchernobai/Java/ProjectOnlineStore/common-lib/target/generated-sources/protobuf/java/org/onlinestore/common/grpc/ProductBatchGrpcRequestOrBuilder.java

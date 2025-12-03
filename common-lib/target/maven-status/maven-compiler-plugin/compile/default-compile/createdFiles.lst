@@ -1,3 +1,4 @@
+dto/AnalyticsKafkaEvent$AnalyticsKafkaEventBuilder.class
 org/onlinestore/common/grpc/ProductGrpcResponse.class
 org/onlinestore/common/grpc/InventoryServiceGrpc$1.class
 org/onlinestore/common/grpc/ProductBatchGrpcResponse$1.class
@@ -10,6 +11,7 @@ org/onlinestore/common/grpc/ProductQuantityRequest$1.class
 org/onlinestore/common/grpc/ProductBatchGrpcRequestOrBuilder.class
 org/onlinestore/common/grpc/ProductQuantityBatch$1.class
 org/onlinestore/common/grpc/InventoryServiceGrpc$InventoryServiceMethodDescriptorSupplier.class
+dto/AnalyticsKafkaEvent.class
 org/onlinestore/common/grpc/InventoryServiceGrpc$InventoryServiceImplBase.class
 org/onlinestore/common/grpc/ProductGrpcRequest$1.class
 org/onlinestore/common/grpc/ProductProto.class
