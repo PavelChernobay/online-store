@@ -20,6 +20,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+/**
+ * gRPC сервис для работы со складом (InventoryService).
+ * <p>
+ * Предоставляет методы для получения информации о продуктах по имени,
+ * получения списка продуктов и обновления количества продуктов на складе.
+ * Использует валидацию продуктов через {@link ProductValidate} и бизнес-логику через {@link ProductService}.
+ */
 @GrpcService
 @RequiredArgsConstructor
 @Slf4j
@@ -28,6 +35,12 @@ public class InventoryGrpcService extends InventoryServiceGrpc.InventoryServiceI
     private final ProductValidate productValidate;
     private final ProductService productService;
 
+    /**
+     * Получает продукт по имени.
+     *
+     * @param request          gRPC запрос с именем продукта и traceId
+     * @param responseObserver объект для отправки gRPC ответа или ошибки
+     */
     @Override
     public void getProductByName(ProductGrpcRequest request, StreamObserver<ProductGrpcResponse> responseObserver) {
         log.info("trace_id = {}, получен запрос на добавления товара.", request.getTraceId());
@@ -48,6 +61,13 @@ public class InventoryGrpcService extends InventoryServiceGrpc.InventoryServiceI
         responseObserver.onCompleted();
     }
 
+    /**
+     * Преобразует сущность {@link Product} в gRPC ответ {@link ProductGrpcResponse}.
+     *
+     * @param product сущность продукта
+     * @param traceId идентификатор запроса для трассировки
+     * @return gRPC ответ с данными продукта
+     */
     private ProductGrpcResponse getProductGrpcResponse(Product product, String traceId) {
         return ProductGrpcResponse.newBuilder()
                 .setId(product.getId().toString())
@@ -59,6 +79,12 @@ public class InventoryGrpcService extends InventoryServiceGrpc.InventoryServiceI
                 .build();
     }
 
+    /**
+     * Получает список продуктов по именам.
+     *
+     * @param request          gRPC запрос с именами продуктов и traceId
+     * @param responseObserver объект для отправки gRPC ответа или ошибки
+     */
     @Override
     public void getListProductByName(ProductBatchGrpcRequest request, StreamObserver<ProductBatchGrpcResponse> responseObserver) {
         log.info("trace_id = {}, получен запрос на проверку списка продуктов.", request.getTraceId());
@@ -101,6 +127,12 @@ public class InventoryGrpcService extends InventoryServiceGrpc.InventoryServiceI
         responseObserver.onCompleted();
     }
 
+    /**
+     * Обновляет количество продуктов на складе.
+     *
+     * @param request          gRPC запрос с количеством продуктов и traceId
+     * @param responseObserver объект для отправки gRPC ответа (Empty) после успешного обновления
+     */
     @Override
     public void updateProductQuantities(ProductQuantityBatch request, StreamObserver<Empty> responseObserver) {
         log.info("trace_id = {}, запрос на обновления количества продуктов", request.getTraceId());

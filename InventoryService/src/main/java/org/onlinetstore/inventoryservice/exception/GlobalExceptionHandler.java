@@ -8,9 +8,20 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import java.time.LocalDateTime;
 
+/**
+ * Глобальный обработчик исключений для InventoryService.
+ * Перехватывает исключения и возвращает структурированные ответы в формате {@link ErrorResponse}.
+ */
 @RestControllerAdvice
 public class GlobalExceptionHandler {
 
+    /**
+     * Обрабатывает исключение {@link ProductNotFoundException}, возникающее при попытке получить
+     * или удалить несуществующий продукт.
+     *
+     * @param ex исключение {@link ProductNotFoundException}
+     * @return {@link ResponseEntity} с {@link ErrorResponse}, содержащий код статуса 404 и сообщение об ошибке
+     */
     @ExceptionHandler(ProductNotFoundException.class)
     public ResponseEntity<ErrorResponse> handleProductNotFound(ProductNotFoundException ex) {
         ErrorResponse errorResponse = ErrorResponse.builder()

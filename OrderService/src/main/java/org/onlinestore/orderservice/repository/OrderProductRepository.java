@@ -2,10 +2,13 @@ package org.onlinestore.orderservice.repository;
 
 import org.onlinestore.orderservice.entity.OrderProduct;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.web.bind.annotation.RestController;
 
 import java.util.UUID;
 
-@RestController
+/**
+ * Репозиторий для работы с сущностью {@link OrderProduct}.
+ * <p>
+ * Предоставляет стандартные CRUD-операции для объектов {@link OrderProduct}.
+ */
 public interface OrderProductRepository extends JpaRepository<OrderProduct, UUID> {
 }

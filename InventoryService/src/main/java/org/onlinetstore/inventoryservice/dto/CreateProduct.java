@@ -6,6 +6,15 @@ import lombok.Builder;
 
 import java.math.BigDecimal;
 
+/**
+ * DTO для создания нового продукта.
+ * Используется при запросе на добавление продукта через {@link org.onlinetstore.inventoryservice.controller.ProductController}.
+ *
+ * @param name     название продукта, не может быть пустым
+ * @param quantity количество продукта на складе, обязательно для заполнения
+ * @param price    цена продукта, обязательно для заполнения
+ * @param sale     скидка на продукт (в процентах), необязательное поле
+ */
 @Builder
 public record CreateProduct(
 

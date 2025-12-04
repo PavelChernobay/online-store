@@ -17,6 +17,12 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
+/**
+ * Конфигурация безопасности Spring Security для OrderService.
+ * <p>
+ * Настраивает шифрование паролей, JWT-фильтр, правила доступа к эндпоинтам
+ * и политику сессий.
+ */
 @Configuration
 @EnableWebSecurity
 @EnableMethodSecurity
@@ -25,16 +31,47 @@ public class SecurityConfig {
 
     private final JwtFilter jwtFilter;
 
+    /**
+     * Создает бин для шифрования паролей с использованием BCrypt.
+     *
+     * @return {@link PasswordEncoder} для шифрования паролей
+     */
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
 
+    /**
+     * Создает бин {@link AuthenticationManager} для аутентификации пользователей.
+     *
+     * @param configuration конфигурация аутентификации
+     * @return {@link AuthenticationManager}
+     * @throws Exception если не удалось создать бин
+     */
     @Bean
     public AuthenticationManager authenticationManager(AuthenticationConfiguration configuration) throws Exception {
         return configuration.getAuthenticationManager();
     }
 
+    /**
+     * Настраивает фильтр безопасности Spring Security.
+     * <p>
+     * - Отключает CSRF
+     * - Использует stateless сессии
+     * - Настраивает доступ к эндпоинтам:
+     *   <ul>
+     *       <li>/v3/api-docs/**, /swagger-ui/**, /swagger-ui.html — разрешены всем</li>
+     *       <li>POST /api/auth/* — разрешены всем</li>
+     *       <li>/api/baskets/**, /api/orders/**, /api/users/me — требуют аутентификации</li>
+     *       <li>/api/users/** — доступ только для пользователей с ролью ADMIN</li>
+     *       <li>Все остальные запросы требуют аутентификации</li>
+     *   </ul>
+     * - Добавляет JWT-фильтр перед {@link UsernamePasswordAuthenticationFilter}
+     *
+     * @param http {@link HttpSecurity} конфигурация безопасности
+     * @return {@link SecurityFilterChain} цепочка фильтров безопасности
+     * @throws Exception если не удалось настроить HttpSecurity
+     */
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
@@ -42,6 +79,7 @@ public class SecurityConfig {
                 .sessionManagement(sm ->
                         sm.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(auth -> auth
+                        .requestMatchers("/v3/api-docs/**", "/swagger-ui/**","/swagger-ui.html").permitAll()
                         .requestMatchers(HttpMethod.POST, "/api/auth/*").permitAll()
                         .requestMatchers("/api/baskets/**").authenticated()
                         .requestMatchers("/api/orders/**").authenticated()

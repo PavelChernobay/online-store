@@ -15,12 +15,30 @@ import org.springframework.kafka.support.serializer.JsonDeserializer;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Конфигурация Kafka Consumer для notification-service.
+ * Отвечает за создание фабрики консьюмеров и контейнера слушателей.
+ */
 @Configuration
 public class KafkaConfig {
 
     @Value("${spring.kafka.bootstrap-servers}")
     private String bootstrapServers;
 
+    /**
+     * Создаёт фабрику Kafka-консьюмеров для обработки событий {@link AnalyticsKafkaEvent}.
+     *
+     * <p>Настройки включают:
+     * <ul>
+     *     <li>адрес Kafka-брокера</li>
+     *     <li>десериализацию ключей через {@link StringDeserializer}</li>
+     *     <li>десериализацию значений через {@link ErrorHandlingDeserializer}</li>
+     *     <li>использование {@link JsonDeserializer} для преобразования JSON → {@link AnalyticsKafkaEvent}</li>
+     *     <li>чтение сообщений с начала в случае отсутствия offset</li>
+     * </ul>
+     *
+     * @return фабрика консьюмеров Kafka
+     */
     @Bean
     public ConsumerFactory<String, AnalyticsKafkaEvent> consumerFactory() {
         Map<String, Object> props = new HashMap<>();
@@ -36,6 +54,13 @@ public class KafkaConfig {
         return new DefaultKafkaConsumerFactory<>(props);
     }
 
+    /**
+     * Создаёт фабрику контейнеров Kafka Listener для обработки сообщений.
+     *
+     * <p>Используется всеми методами, помеченными {@code @KafkaListener}.
+     *
+     * @return фабрика контейнеров Kafka Listener
+     */
     @Bean
     public ConcurrentKafkaListenerContainerFactory<String, AnalyticsKafkaEvent> kafkaListenerContainerFactory() {
         ConcurrentKafkaListenerContainerFactory<String, AnalyticsKafkaEvent> factory =
