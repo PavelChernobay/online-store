@@ -46,5 +46,5 @@ spring:
 grpc:
   client:
     inventory-service:
-      address: "static://localhost:9090"
+      address: "static://inventory-service:9090"
       negotiation-type: plaintext

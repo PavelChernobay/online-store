@@ -110,7 +110,16 @@
     </dependencies>
 
     <build>
+
         <finalName>notification-service</finalName>
+
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+
     </build>
 
 </project>

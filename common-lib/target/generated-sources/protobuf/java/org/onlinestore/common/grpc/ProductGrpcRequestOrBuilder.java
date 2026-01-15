@@ -7,7 +7,7 @@ package org.onlinestore.common.grpc;
 
 @com.google.protobuf.Generated
 public interface ProductGrpcRequestOrBuilder extends
-    // @@protoc_insertion_point(interface_extends:ProductGrpcRequest)
+    // @@protoc_insertion_point(interface_extends:inventory.ProductGrpcRequest)
     com.google.protobuf.MessageOrBuilder {
 
   /**

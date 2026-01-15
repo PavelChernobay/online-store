@@ -6,12 +6,12 @@
 package org.onlinestore.common.grpc;
 
 /**
- * Protobuf type {@code ProductGrpcResponse}
+ * Protobuf type {@code inventory.ProductGrpcResponse}
  */
 @com.google.protobuf.Generated
 public final class ProductGrpcResponse extends
     com.google.protobuf.GeneratedMessage implements
-    // @@protoc_insertion_point(message_implements:ProductGrpcResponse)
+    // @@protoc_insertion_point(message_implements:inventory.ProductGrpcResponse)
     ProductGrpcResponseOrBuilder {
 private static final long serialVersionUID = 0L;
   static {
@@ -35,13 +35,13 @@ private static final long serialVersionUID = 0L;
 
   public static final com.google.protobuf.Descriptors.Descriptor
       getDescriptor() {
-    return org.onlinestore.common.grpc.ProductProto.internal_static_ProductGrpcResponse_descriptor;
+    return org.onlinestore.common.grpc.ProductProto.internal_static_inventory_ProductGrpcResponse_descriptor;
   }
 
   @java.lang.Override
   protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internalGetFieldAccessorTable() {
-    return org.onlinestore.common.grpc.ProductProto.internal_static_ProductGrpcResponse_fieldAccessorTable
+    return org.onlinestore.common.grpc.ProductProto.internal_static_inventory_ProductGrpcResponse_fieldAccessorTable
         .ensureFieldAccessorsInitialized(
             org.onlinestore.common.grpc.ProductGrpcResponse.class, org.onlinestore.common.grpc.ProductGrpcResponse.Builder.class);
   }
@@ -408,21 +408,21 @@ private static final long serialVersionUID = 0L;
     return builder;
   }
   /**
-   * Protobuf type {@code ProductGrpcResponse}
+   * Protobuf type {@code inventory.ProductGrpcResponse}
    */
   public static final class Builder extends
       com.google.protobuf.GeneratedMessage.Builder<Builder> implements
-      // @@protoc_insertion_point(builder_implements:ProductGrpcResponse)
+      // @@protoc_insertion_point(builder_implements:inventory.ProductGrpcResponse)
       org.onlinestore.common.grpc.ProductGrpcResponseOrBuilder {
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return org.onlinestore.common.grpc.ProductProto.internal_static_ProductGrpcResponse_descriptor;
+      return org.onlinestore.common.grpc.ProductProto.internal_static_inventory_ProductGrpcResponse_descriptor;
     }
 
     @java.lang.Override
     protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return org.onlinestore.common.grpc.ProductProto.internal_static_ProductGrpcResponse_fieldAccessorTable
+      return org.onlinestore.common.grpc.ProductProto.internal_static_inventory_ProductGrpcResponse_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
               org.onlinestore.common.grpc.ProductGrpcResponse.class, org.onlinestore.common.grpc.ProductGrpcResponse.Builder.class);
     }
@@ -453,7 +453,7 @@ private static final long serialVersionUID = 0L;
     @java.lang.Override
     public com.google.protobuf.Descriptors.Descriptor
         getDescriptorForType() {
-      return org.onlinestore.common.grpc.ProductProto.internal_static_ProductGrpcResponse_descriptor;
+      return org.onlinestore.common.grpc.ProductProto.internal_static_inventory_ProductGrpcResponse_descriptor;
     }
 
     @java.lang.Override
@@ -921,10 +921,10 @@ private static final long serialVersionUID = 0L;
       return this;
     }
 
-    // @@protoc_insertion_point(builder_scope:ProductGrpcResponse)
+    // @@protoc_insertion_point(builder_scope:inventory.ProductGrpcResponse)
   }
 
-  // @@protoc_insertion_point(class_scope:ProductGrpcResponse)
+  // @@protoc_insertion_point(class_scope:inventory.ProductGrpcResponse)
   private static final org.onlinestore.common.grpc.ProductGrpcResponse DEFAULT_INSTANCE;
   static {
     DEFAULT_INSTANCE = new org.onlinestore.common.grpc.ProductGrpcResponse();

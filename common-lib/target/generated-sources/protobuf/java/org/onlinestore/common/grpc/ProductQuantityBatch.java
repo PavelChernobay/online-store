@@ -6,12 +6,12 @@
 package org.onlinestore.common.grpc;
 
 /**
- * Protobuf type {@code ProductQuantityBatch}
+ * Protobuf type {@code inventory.ProductQuantityBatch}
  */
 @com.google.protobuf.Generated
 public final class ProductQuantityBatch extends
     com.google.protobuf.GeneratedMessage implements
-    // @@protoc_insertion_point(message_implements:ProductQuantityBatch)
+    // @@protoc_insertion_point(message_implements:inventory.ProductQuantityBatch)
     ProductQuantityBatchOrBuilder {
 private static final long serialVersionUID = 0L;
   static {
@@ -34,13 +34,13 @@ private static final long serialVersionUID = 0L;
 
   public static final com.google.protobuf.Descriptors.Descriptor
       getDescriptor() {
-    return org.onlinestore.common.grpc.ProductProto.internal_static_ProductQuantityBatch_descriptor;
+    return org.onlinestore.common.grpc.ProductProto.internal_static_inventory_ProductQuantityBatch_descriptor;
   }
 
   @java.lang.Override
   protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internalGetFieldAccessorTable() {
-    return org.onlinestore.common.grpc.ProductProto.internal_static_ProductQuantityBatch_fieldAccessorTable
+    return org.onlinestore.common.grpc.ProductProto.internal_static_inventory_ProductQuantityBatch_fieldAccessorTable
         .ensureFieldAccessorsInitialized(
             org.onlinestore.common.grpc.ProductQuantityBatch.class, org.onlinestore.common.grpc.ProductQuantityBatch.Builder.class);
   }
@@ -49,14 +49,14 @@ private static final long serialVersionUID = 0L;
   @SuppressWarnings("serial")
   private java.util.List<org.onlinestore.common.grpc.ProductQuantityRequest> quantityProducts_;
   /**
-   * <code>repeated .ProductQuantityRequest quantityProducts = 1;</code>
+   * <code>repeated .inventory.ProductQuantityRequest quantityProducts = 1;</code>
    */
   @java.lang.Override
   public java.util.List<org.onlinestore.common.grpc.ProductQuantityRequest> getQuantityProductsList() {
     return quantityProducts_;
   }
   /**
-   * <code>repeated .ProductQuantityRequest quantityProducts = 1;</code>
+   * <code>repeated .inventory.ProductQuantityRequest quantityProducts = 1;</code>
    */
   @java.lang.Override
   public java.util.List<? extends org.onlinestore.common.grpc.ProductQuantityRequestOrBuilder> 
@@ -64,21 +64,21 @@ private static final long serialVersionUID = 0L;
     return quantityProducts_;
   }
   /**
-   * <code>repeated .ProductQuantityRequest quantityProducts = 1;</code>
+   * <code>repeated .inventory.ProductQuantityRequest quantityProducts = 1;</code>
    */
   @java.lang.Override
   public int getQuantityProductsCount() {
     return quantityProducts_.size();
   }
   /**
-   * <code>repeated .ProductQuantityRequest quantityProducts = 1;</code>
+   * <code>repeated .inventory.ProductQuantityRequest quantityProducts = 1;</code>
    */
   @java.lang.Override
   public org.onlinestore.common.grpc.ProductQuantityRequest getQuantityProducts(int index) {
     return quantityProducts_.get(index);
   }
   /**
-   * <code>repeated .ProductQuantityRequest quantityProducts = 1;</code>
+   * <code>repeated .inventory.ProductQuantityRequest quantityProducts = 1;</code>
    */
   @java.lang.Override
   public org.onlinestore.common.grpc.ProductQuantityRequestOrBuilder getQuantityProductsOrBuilder(
@@ -295,21 +295,21 @@ private static final long serialVersionUID = 0L;
     return builder;
   }
   /**
-   * Protobuf type {@code ProductQuantityBatch}
+   * Protobuf type {@code inventory.ProductQuantityBatch}
    */
   public static final class Builder extends
       com.google.protobuf.GeneratedMessage.Builder<Builder> implements
-      // @@protoc_insertion_point(builder_implements:ProductQuantityBatch)
+      // @@protoc_insertion_point(builder_implements:inventory.ProductQuantityBatch)
       org.onlinestore.common.grpc.ProductQuantityBatchOrBuilder {
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return org.onlinestore.common.grpc.ProductProto.internal_static_ProductQuantityBatch_descriptor;
+      return org.onlinestore.common.grpc.ProductProto.internal_static_inventory_ProductQuantityBatch_descriptor;
     }
 
     @java.lang.Override
     protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return org.onlinestore.common.grpc.ProductProto.internal_static_ProductQuantityBatch_fieldAccessorTable
+      return org.onlinestore.common.grpc.ProductProto.internal_static_inventory_ProductQuantityBatch_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
               org.onlinestore.common.grpc.ProductQuantityBatch.class, org.onlinestore.common.grpc.ProductQuantityBatch.Builder.class);
     }
@@ -342,7 +342,7 @@ private static final long serialVersionUID = 0L;
     @java.lang.Override
     public com.google.protobuf.Descriptors.Descriptor
         getDescriptorForType() {
-      return org.onlinestore.common.grpc.ProductProto.internal_static_ProductQuantityBatch_descriptor;
+      return org.onlinestore.common.grpc.ProductProto.internal_static_inventory_ProductQuantityBatch_descriptor;
     }
 
     @java.lang.Override
@@ -504,7 +504,7 @@ private static final long serialVersionUID = 0L;
         org.onlinestore.common.grpc.ProductQuantityRequest, org.onlinestore.common.grpc.ProductQuantityRequest.Builder, org.onlinestore.common.grpc.ProductQuantityRequestOrBuilder> quantityProductsBuilder_;
 
     /**
-     * <code>repeated .ProductQuantityRequest quantityProducts = 1;</code>
+     * <code>repeated .inventory.ProductQuantityRequest quantityProducts = 1;</code>
      */
     public java.util.List<org.onlinestore.common.grpc.ProductQuantityRequest> getQuantityProductsList() {
       if (quantityProductsBuilder_ == null) {
@@ -514,7 +514,7 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
-     * <code>repeated .ProductQuantityRequest quantityProducts = 1;</code>
+     * <code>repeated .inventory.ProductQuantityRequest quantityProducts = 1;</code>
      */
     public int getQuantityProductsCount() {
       if (quantityProductsBuilder_ == null) {
@@ -524,7 +524,7 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
-     * <code>repeated .ProductQuantityRequest quantityProducts = 1;</code>
+     * <code>repeated .inventory.ProductQuantityRequest quantityProducts = 1;</code>
      */
     public org.onlinestore.common.grpc.ProductQuantityRequest getQuantityProducts(int index) {
       if (quantityProductsBuilder_ == null) {
@@ -534,7 +534,7 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
-     * <code>repeated .ProductQuantityRequest quantityProducts = 1;</code>
+     * <code>repeated .inventory.ProductQuantityRequest quantityProducts = 1;</code>
      */
     public Builder setQuantityProducts(
         int index, org.onlinestore.common.grpc.ProductQuantityRequest value) {
@@ -551,7 +551,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>repeated .ProductQuantityRequest quantityProducts = 1;</code>
+     * <code>repeated .inventory.ProductQuantityRequest quantityProducts = 1;</code>
      */
     public Builder setQuantityProducts(
         int index, org.onlinestore.common.grpc.ProductQuantityRequest.Builder builderForValue) {
@@ -565,7 +565,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>repeated .ProductQuantityRequest quantityProducts = 1;</code>
+     * <code>repeated .inventory.ProductQuantityRequest quantityProducts = 1;</code>
      */
     public Builder addQuantityProducts(org.onlinestore.common.grpc.ProductQuantityRequest value) {
       if (quantityProductsBuilder_ == null) {
@@ -581,7 +581,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>repeated .ProductQuantityRequest quantityProducts = 1;</code>
+     * <code>repeated .inventory.ProductQuantityRequest quantityProducts = 1;</code>
      */
     public Builder addQuantityProducts(
         int index, org.onlinestore.common.grpc.ProductQuantityRequest value) {
@@ -598,7 +598,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>repeated .ProductQuantityRequest quantityProducts = 1;</code>
+     * <code>repeated .inventory.ProductQuantityRequest quantityProducts = 1;</code>
      */
     public Builder addQuantityProducts(
         org.onlinestore.common.grpc.ProductQuantityRequest.Builder builderForValue) {
@@ -612,7 +612,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>repeated .ProductQuantityRequest quantityProducts = 1;</code>
+     * <code>repeated .inventory.ProductQuantityRequest quantityProducts = 1;</code>
      */
     public Builder addQuantityProducts(
         int index, org.onlinestore.common.grpc.ProductQuantityRequest.Builder builderForValue) {
@@ -626,7 +626,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>repeated .ProductQuantityRequest quantityProducts = 1;</code>
+     * <code>repeated .inventory.ProductQuantityRequest quantityProducts = 1;</code>
      */
     public Builder addAllQuantityProducts(
         java.lang.Iterable<? extends org.onlinestore.common.grpc.ProductQuantityRequest> values) {
@@ -641,7 +641,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>repeated .ProductQuantityRequest quantityProducts = 1;</code>
+     * <code>repeated .inventory.ProductQuantityRequest quantityProducts = 1;</code>
      */
     public Builder clearQuantityProducts() {
       if (quantityProductsBuilder_ == null) {
@@ -654,7 +654,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>repeated .ProductQuantityRequest quantityProducts = 1;</code>
+     * <code>repeated .inventory.ProductQuantityRequest quantityProducts = 1;</code>
      */
     public Builder removeQuantityProducts(int index) {
       if (quantityProductsBuilder_ == null) {
@@ -667,14 +667,14 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>repeated .ProductQuantityRequest quantityProducts = 1;</code>
+     * <code>repeated .inventory.ProductQuantityRequest quantityProducts = 1;</code>
      */
     public org.onlinestore.common.grpc.ProductQuantityRequest.Builder getQuantityProductsBuilder(
         int index) {
       return internalGetQuantityProductsFieldBuilder().getBuilder(index);
     }
     /**
-     * <code>repeated .ProductQuantityRequest quantityProducts = 1;</code>
+     * <code>repeated .inventory.ProductQuantityRequest quantityProducts = 1;</code>
      */
     public org.onlinestore.common.grpc.ProductQuantityRequestOrBuilder getQuantityProductsOrBuilder(
         int index) {
@@ -684,7 +684,7 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
-     * <code>repeated .ProductQuantityRequest quantityProducts = 1;</code>
+     * <code>repeated .inventory.ProductQuantityRequest quantityProducts = 1;</code>
      */
     public java.util.List<? extends org.onlinestore.common.grpc.ProductQuantityRequestOrBuilder> 
          getQuantityProductsOrBuilderList() {
@@ -695,14 +695,14 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
-     * <code>repeated .ProductQuantityRequest quantityProducts = 1;</code>
+     * <code>repeated .inventory.ProductQuantityRequest quantityProducts = 1;</code>
      */
     public org.onlinestore.common.grpc.ProductQuantityRequest.Builder addQuantityProductsBuilder() {
       return internalGetQuantityProductsFieldBuilder().addBuilder(
           org.onlinestore.common.grpc.ProductQuantityRequest.getDefaultInstance());
     }
     /**
-     * <code>repeated .ProductQuantityRequest quantityProducts = 1;</code>
+     * <code>repeated .inventory.ProductQuantityRequest quantityProducts = 1;</code>
      */
     public org.onlinestore.common.grpc.ProductQuantityRequest.Builder addQuantityProductsBuilder(
         int index) {
@@ -710,7 +710,7 @@ private static final long serialVersionUID = 0L;
           index, org.onlinestore.common.grpc.ProductQuantityRequest.getDefaultInstance());
     }
     /**
-     * <code>repeated .ProductQuantityRequest quantityProducts = 1;</code>
+     * <code>repeated .inventory.ProductQuantityRequest quantityProducts = 1;</code>
      */
     public java.util.List<org.onlinestore.common.grpc.ProductQuantityRequest.Builder> 
          getQuantityProductsBuilderList() {
@@ -803,10 +803,10 @@ private static final long serialVersionUID = 0L;
       return this;
     }
 
-    // @@protoc_insertion_point(builder_scope:ProductQuantityBatch)
+    // @@protoc_insertion_point(builder_scope:inventory.ProductQuantityBatch)
   }
 
-  // @@protoc_insertion_point(class_scope:ProductQuantityBatch)
+  // @@protoc_insertion_point(class_scope:inventory.ProductQuantityBatch)
   private static final org.onlinestore.common.grpc.ProductQuantityBatch DEFAULT_INSTANCE;
   static {
     DEFAULT_INSTANCE = new org.onlinestore.common.grpc.ProductQuantityBatch();

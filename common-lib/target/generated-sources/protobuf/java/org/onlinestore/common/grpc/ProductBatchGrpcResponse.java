@@ -6,12 +6,12 @@
 package org.onlinestore.common.grpc;
 
 /**
- * Protobuf type {@code ProductBatchGrpcResponse}
+ * Protobuf type {@code inventory.ProductBatchGrpcResponse}
  */
 @com.google.protobuf.Generated
 public final class ProductBatchGrpcResponse extends
     com.google.protobuf.GeneratedMessage implements
-    // @@protoc_insertion_point(message_implements:ProductBatchGrpcResponse)
+    // @@protoc_insertion_point(message_implements:inventory.ProductBatchGrpcResponse)
     ProductBatchGrpcResponseOrBuilder {
 private static final long serialVersionUID = 0L;
   static {
@@ -34,13 +34,13 @@ private static final long serialVersionUID = 0L;
 
   public static final com.google.protobuf.Descriptors.Descriptor
       getDescriptor() {
-    return org.onlinestore.common.grpc.ProductProto.internal_static_ProductBatchGrpcResponse_descriptor;
+    return org.onlinestore.common.grpc.ProductProto.internal_static_inventory_ProductBatchGrpcResponse_descriptor;
   }
 
   @java.lang.Override
   protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internalGetFieldAccessorTable() {
-    return org.onlinestore.common.grpc.ProductProto.internal_static_ProductBatchGrpcResponse_fieldAccessorTable
+    return org.onlinestore.common.grpc.ProductProto.internal_static_inventory_ProductBatchGrpcResponse_fieldAccessorTable
         .ensureFieldAccessorsInitialized(
             org.onlinestore.common.grpc.ProductBatchGrpcResponse.class, org.onlinestore.common.grpc.ProductBatchGrpcResponse.Builder.class);
   }
@@ -49,14 +49,14 @@ private static final long serialVersionUID = 0L;
   @SuppressWarnings("serial")
   private java.util.List<org.onlinestore.common.grpc.ProductGrpcResponse> productResponse_;
   /**
-   * <code>repeated .ProductGrpcResponse product_response = 1;</code>
+   * <code>repeated .inventory.ProductGrpcResponse product_response = 1;</code>
    */
   @java.lang.Override
   public java.util.List<org.onlinestore.common.grpc.ProductGrpcResponse> getProductResponseList() {
     return productResponse_;
   }
   /**
-   * <code>repeated .ProductGrpcResponse product_response = 1;</code>
+   * <code>repeated .inventory.ProductGrpcResponse product_response = 1;</code>
    */
   @java.lang.Override
   public java.util.List<? extends org.onlinestore.common.grpc.ProductGrpcResponseOrBuilder> 
@@ -64,21 +64,21 @@ private static final long serialVersionUID = 0L;
     return productResponse_;
   }
   /**
-   * <code>repeated .ProductGrpcResponse product_response = 1;</code>
+   * <code>repeated .inventory.ProductGrpcResponse product_response = 1;</code>
    */
   @java.lang.Override
   public int getProductResponseCount() {
     return productResponse_.size();
   }
   /**
-   * <code>repeated .ProductGrpcResponse product_response = 1;</code>
+   * <code>repeated .inventory.ProductGrpcResponse product_response = 1;</code>
    */
   @java.lang.Override
   public org.onlinestore.common.grpc.ProductGrpcResponse getProductResponse(int index) {
     return productResponse_.get(index);
   }
   /**
-   * <code>repeated .ProductGrpcResponse product_response = 1;</code>
+   * <code>repeated .inventory.ProductGrpcResponse product_response = 1;</code>
    */
   @java.lang.Override
   public org.onlinestore.common.grpc.ProductGrpcResponseOrBuilder getProductResponseOrBuilder(
@@ -295,21 +295,21 @@ private static final long serialVersionUID = 0L;
     return builder;
   }
   /**
-   * Protobuf type {@code ProductBatchGrpcResponse}
+   * Protobuf type {@code inventory.ProductBatchGrpcResponse}
    */
   public static final class Builder extends
       com.google.protobuf.GeneratedMessage.Builder<Builder> implements
-      // @@protoc_insertion_point(builder_implements:ProductBatchGrpcResponse)
+      // @@protoc_insertion_point(builder_implements:inventory.ProductBatchGrpcResponse)
       org.onlinestore.common.grpc.ProductBatchGrpcResponseOrBuilder {
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return org.onlinestore.common.grpc.ProductProto.internal_static_ProductBatchGrpcResponse_descriptor;
+      return org.onlinestore.common.grpc.ProductProto.internal_static_inventory_ProductBatchGrpcResponse_descriptor;
     }
 
     @java.lang.Override
     protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return org.onlinestore.common.grpc.ProductProto.internal_static_ProductBatchGrpcResponse_fieldAccessorTable
+      return org.onlinestore.common.grpc.ProductProto.internal_static_inventory_ProductBatchGrpcResponse_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
               org.onlinestore.common.grpc.ProductBatchGrpcResponse.class, org.onlinestore.common.grpc.ProductBatchGrpcResponse.Builder.class);
     }
@@ -342,7 +342,7 @@ private static final long serialVersionUID = 0L;
     @java.lang.Override
     public com.google.protobuf.Descriptors.Descriptor
         getDescriptorForType() {
-      return org.onlinestore.common.grpc.ProductProto.internal_static_ProductBatchGrpcResponse_descriptor;
+      return org.onlinestore.common.grpc.ProductProto.internal_static_inventory_ProductBatchGrpcResponse_descriptor;
     }
 
     @java.lang.Override
@@ -504,7 +504,7 @@ private static final long serialVersionUID = 0L;
         org.onlinestore.common.grpc.ProductGrpcResponse, org.onlinestore.common.grpc.ProductGrpcResponse.Builder, org.onlinestore.common.grpc.ProductGrpcResponseOrBuilder> productResponseBuilder_;
 
     /**
-     * <code>repeated .ProductGrpcResponse product_response = 1;</code>
+     * <code>repeated .inventory.ProductGrpcResponse product_response = 1;</code>
      */
     public java.util.List<org.onlinestore.common.grpc.ProductGrpcResponse> getProductResponseList() {
       if (productResponseBuilder_ == null) {
@@ -514,7 +514,7 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
-     * <code>repeated .ProductGrpcResponse product_response = 1;</code>
+     * <code>repeated .inventory.ProductGrpcResponse product_response = 1;</code>
      */
     public int getProductResponseCount() {
       if (productResponseBuilder_ == null) {
@@ -524,7 +524,7 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
-     * <code>repeated .ProductGrpcResponse product_response = 1;</code>
+     * <code>repeated .inventory.ProductGrpcResponse product_response = 1;</code>
      */
     public org.onlinestore.common.grpc.ProductGrpcResponse getProductResponse(int index) {
       if (productResponseBuilder_ == null) {
@@ -534,7 +534,7 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
-     * <code>repeated .ProductGrpcResponse product_response = 1;</code>
+     * <code>repeated .inventory.ProductGrpcResponse product_response = 1;</code>
      */
     public Builder setProductResponse(
         int index, org.onlinestore.common.grpc.ProductGrpcResponse value) {
@@ -551,7 +551,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>repeated .ProductGrpcResponse product_response = 1;</code>
+     * <code>repeated .inventory.ProductGrpcResponse product_response = 1;</code>
      */
     public Builder setProductResponse(
         int index, org.onlinestore.common.grpc.ProductGrpcResponse.Builder builderForValue) {
@@ -565,7 +565,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>repeated .ProductGrpcResponse product_response = 1;</code>
+     * <code>repeated .inventory.ProductGrpcResponse product_response = 1;</code>
      */
     public Builder addProductResponse(org.onlinestore.common.grpc.ProductGrpcResponse value) {
       if (productResponseBuilder_ == null) {
@@ -581,7 +581,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>repeated .ProductGrpcResponse product_response = 1;</code>
+     * <code>repeated .inventory.ProductGrpcResponse product_response = 1;</code>
      */
     public Builder addProductResponse(
         int index, org.onlinestore.common.grpc.ProductGrpcResponse value) {
@@ -598,7 +598,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>repeated .ProductGrpcResponse product_response = 1;</code>
+     * <code>repeated .inventory.ProductGrpcResponse product_response = 1;</code>
      */
     public Builder addProductResponse(
         org.onlinestore.common.grpc.ProductGrpcResponse.Builder builderForValue) {
@@ -612,7 +612,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>repeated .ProductGrpcResponse product_response = 1;</code>
+     * <code>repeated .inventory.ProductGrpcResponse product_response = 1;</code>
      */
     public Builder addProductResponse(
         int index, org.onlinestore.common.grpc.ProductGrpcResponse.Builder builderForValue) {
@@ -626,7 +626,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>repeated .ProductGrpcResponse product_response = 1;</code>
+     * <code>repeated .inventory.ProductGrpcResponse product_response = 1;</code>
      */
     public Builder addAllProductResponse(
         java.lang.Iterable<? extends org.onlinestore.common.grpc.ProductGrpcResponse> values) {
@@ -641,7 +641,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>repeated .ProductGrpcResponse product_response = 1;</code>
+     * <code>repeated .inventory.ProductGrpcResponse product_response = 1;</code>
      */
     public Builder clearProductResponse() {
       if (productResponseBuilder_ == null) {
@@ -654,7 +654,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>repeated .ProductGrpcResponse product_response = 1;</code>
+     * <code>repeated .inventory.ProductGrpcResponse product_response = 1;</code>
      */
     public Builder removeProductResponse(int index) {
       if (productResponseBuilder_ == null) {
@@ -667,14 +667,14 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>repeated .ProductGrpcResponse product_response = 1;</code>
+     * <code>repeated .inventory.ProductGrpcResponse product_response = 1;</code>
      */
     public org.onlinestore.common.grpc.ProductGrpcResponse.Builder getProductResponseBuilder(
         int index) {
       return internalGetProductResponseFieldBuilder().getBuilder(index);
     }
     /**
-     * <code>repeated .ProductGrpcResponse product_response = 1;</code>
+     * <code>repeated .inventory.ProductGrpcResponse product_response = 1;</code>
      */
     public org.onlinestore.common.grpc.ProductGrpcResponseOrBuilder getProductResponseOrBuilder(
         int index) {
@@ -684,7 +684,7 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
-     * <code>repeated .ProductGrpcResponse product_response = 1;</code>
+     * <code>repeated .inventory.ProductGrpcResponse product_response = 1;</code>
      */
     public java.util.List<? extends org.onlinestore.common.grpc.ProductGrpcResponseOrBuilder> 
          getProductResponseOrBuilderList() {
@@ -695,14 +695,14 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
-     * <code>repeated .ProductGrpcResponse product_response = 1;</code>
+     * <code>repeated .inventory.ProductGrpcResponse product_response = 1;</code>
      */
     public org.onlinestore.common.grpc.ProductGrpcResponse.Builder addProductResponseBuilder() {
       return internalGetProductResponseFieldBuilder().addBuilder(
           org.onlinestore.common.grpc.ProductGrpcResponse.getDefaultInstance());
     }
     /**
-     * <code>repeated .ProductGrpcResponse product_response = 1;</code>
+     * <code>repeated .inventory.ProductGrpcResponse product_response = 1;</code>
      */
     public org.onlinestore.common.grpc.ProductGrpcResponse.Builder addProductResponseBuilder(
         int index) {
@@ -710,7 +710,7 @@ private static final long serialVersionUID = 0L;
           index, org.onlinestore.common.grpc.ProductGrpcResponse.getDefaultInstance());
     }
     /**
-     * <code>repeated .ProductGrpcResponse product_response = 1;</code>
+     * <code>repeated .inventory.ProductGrpcResponse product_response = 1;</code>
      */
     public java.util.List<org.onlinestore.common.grpc.ProductGrpcResponse.Builder> 
          getProductResponseBuilderList() {
@@ -803,10 +803,10 @@ private static final long serialVersionUID = 0L;
       return this;
     }
 
-    // @@protoc_insertion_point(builder_scope:ProductBatchGrpcResponse)
+    // @@protoc_insertion_point(builder_scope:inventory.ProductBatchGrpcResponse)
   }
 
-  // @@protoc_insertion_point(class_scope:ProductBatchGrpcResponse)
+  // @@protoc_insertion_point(class_scope:inventory.ProductBatchGrpcResponse)
   private static final org.onlinestore.common.grpc.ProductBatchGrpcResponse DEFAULT_INSTANCE;
   static {
     DEFAULT_INSTANCE = new org.onlinestore.common.grpc.ProductBatchGrpcResponse();

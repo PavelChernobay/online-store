@@ -7,29 +7,29 @@ package org.onlinestore.common.grpc;
 
 @com.google.protobuf.Generated
 public interface ProductBatchGrpcResponseOrBuilder extends
-    // @@protoc_insertion_point(interface_extends:ProductBatchGrpcResponse)
+    // @@protoc_insertion_point(interface_extends:inventory.ProductBatchGrpcResponse)
     com.google.protobuf.MessageOrBuilder {
 
   /**
-   * <code>repeated .ProductGrpcResponse product_response = 1;</code>
+   * <code>repeated .inventory.ProductGrpcResponse product_response = 1;</code>
    */
   java.util.List<org.onlinestore.common.grpc.ProductGrpcResponse> 
       getProductResponseList();
   /**
-   * <code>repeated .ProductGrpcResponse product_response = 1;</code>
+   * <code>repeated .inventory.ProductGrpcResponse product_response = 1;</code>
    */
   org.onlinestore.common.grpc.ProductGrpcResponse getProductResponse(int index);
   /**
-   * <code>repeated .ProductGrpcResponse product_response = 1;</code>
+   * <code>repeated .inventory.ProductGrpcResponse product_response = 1;</code>
    */
   int getProductResponseCount();
   /**
-   * <code>repeated .ProductGrpcResponse product_response = 1;</code>
+   * <code>repeated .inventory.ProductGrpcResponse product_response = 1;</code>
    */
   java.util.List<? extends org.onlinestore.common.grpc.ProductGrpcResponseOrBuilder> 
       getProductResponseOrBuilderList();
   /**
-   * <code>repeated .ProductGrpcResponse product_response = 1;</code>
+   * <code>repeated .inventory.ProductGrpcResponse product_response = 1;</code>
    */
   org.onlinestore.common.grpc.ProductGrpcResponseOrBuilder getProductResponseOrBuilder(
       int index);

@@ -7,29 +7,29 @@ package org.onlinestore.common.grpc;
 
 @com.google.protobuf.Generated
 public interface ProductQuantityBatchOrBuilder extends
-    // @@protoc_insertion_point(interface_extends:ProductQuantityBatch)
+    // @@protoc_insertion_point(interface_extends:inventory.ProductQuantityBatch)
     com.google.protobuf.MessageOrBuilder {
 
   /**
-   * <code>repeated .ProductQuantityRequest quantityProducts = 1;</code>
+   * <code>repeated .inventory.ProductQuantityRequest quantityProducts = 1;</code>
    */
   java.util.List<org.onlinestore.common.grpc.ProductQuantityRequest> 
       getQuantityProductsList();
   /**
-   * <code>repeated .ProductQuantityRequest quantityProducts = 1;</code>
+   * <code>repeated .inventory.ProductQuantityRequest quantityProducts = 1;</code>
    */
   org.onlinestore.common.grpc.ProductQuantityRequest getQuantityProducts(int index);
   /**
-   * <code>repeated .ProductQuantityRequest quantityProducts = 1;</code>
+   * <code>repeated .inventory.ProductQuantityRequest quantityProducts = 1;</code>
    */
   int getQuantityProductsCount();
   /**
-   * <code>repeated .ProductQuantityRequest quantityProducts = 1;</code>
+   * <code>repeated .inventory.ProductQuantityRequest quantityProducts = 1;</code>
    */
   java.util.List<? extends org.onlinestore.common.grpc.ProductQuantityRequestOrBuilder> 
       getQuantityProductsOrBuilderList();
   /**
-   * <code>repeated .ProductQuantityRequest quantityProducts = 1;</code>
+   * <code>repeated .inventory.ProductQuantityRequest quantityProducts = 1;</code>
    */
   org.onlinestore.common.grpc.ProductQuantityRequestOrBuilder getQuantityProductsOrBuilder(
       int index);

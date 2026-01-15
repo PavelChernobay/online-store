@@ -27,35 +27,35 @@ public final class ProductProto {
         (com.google.protobuf.ExtensionRegistryLite) registry);
   }
   static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_ProductGrpcRequest_descriptor;
+    internal_static_inventory_ProductGrpcRequest_descriptor;
   static final 
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
-      internal_static_ProductGrpcRequest_fieldAccessorTable;
+      internal_static_inventory_ProductGrpcRequest_fieldAccessorTable;
   static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_ProductGrpcResponse_descriptor;
+    internal_static_inventory_ProductGrpcResponse_descriptor;
   static final 
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
-      internal_static_ProductGrpcResponse_fieldAccessorTable;
+      internal_static_inventory_ProductGrpcResponse_fieldAccessorTable;
   static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_ProductBatchGrpcRequest_descriptor;
+    internal_static_inventory_ProductBatchGrpcRequest_descriptor;
   static final 
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
-      internal_static_ProductBatchGrpcRequest_fieldAccessorTable;
+      internal_static_inventory_ProductBatchGrpcRequest_fieldAccessorTable;
   static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_ProductBatchGrpcResponse_descriptor;
+    internal_static_inventory_ProductBatchGrpcResponse_descriptor;
   static final 
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
-      internal_static_ProductBatchGrpcResponse_fieldAccessorTable;
+      internal_static_inventory_ProductBatchGrpcResponse_fieldAccessorTable;
   static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_ProductQuantityRequest_descriptor;
+    internal_static_inventory_ProductQuantityRequest_descriptor;
   static final 
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
-      internal_static_ProductQuantityRequest_fieldAccessorTable;
+      internal_static_inventory_ProductQuantityRequest_fieldAccessorTable;
   static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_ProductQuantityBatch_descriptor;
+    internal_static_inventory_ProductQuantityBatch_descriptor;
   static final 
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
-      internal_static_ProductQuantityBatch_fieldAccessorTable;
+      internal_static_inventory_ProductQuantityBatch_fieldAccessorTable;
 
   public static com.google.protobuf.Descriptors.FileDescriptor
       getDescriptor() {
@@ -65,68 +65,70 @@ public final class ProductProto {
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\013cofig.proto\032\033google/protobuf/empty.pro" +
-      "to\"4\n\022ProductGrpcRequest\022\014\n\004name\030\001 \001(\t\022\020" +
-      "\n\010trace_id\030\002 \001(\t\"p\n\023ProductGrpcResponse\022" +
-      "\n\n\002id\030\001 \001(\t\022\014\n\004name\030\002 \001(\t\022\020\n\010quantity\030\003 " +
-      "\001(\005\022\r\n\005price\030\004 \001(\001\022\014\n\004sale\030\005 \001(\005\022\020\n\010trac" +
-      "e_id\030\006 \001(\t\"A\n\027ProductBatchGrpcRequest\022\024\n" +
-      "\014product_name\030\001 \003(\t\022\020\n\010trace_id\030\002 \001(\t\"\\\n" +
-      "\030ProductBatchGrpcResponse\022.\n\020product_res" +
-      "ponse\030\001 \003(\0132\024.ProductGrpcResponse\022\020\n\010tra" +
-      "ce_id\030\002 \001(\t\"@\n\026ProductQuantityRequest\022\024\n" +
-      "\014product_name\030\001 \001(\t\022\020\n\010quantity\030\002 \001(\005\"[\n" +
-      "\024ProductQuantityBatch\0221\n\020quantityProduct" +
-      "s\030\001 \003(\0132\027.ProductQuantityRequest\022\020\n\010trac" +
-      "e_id\030\002 \001(\t2\350\001\n\020InventoryService\022=\n\020getPr" +
-      "oductByName\022\023.ProductGrpcRequest\032\024.Produ" +
-      "ctGrpcResponse\022K\n\024getListProductByName\022\030" +
-      ".ProductBatchGrpcRequest\032\031.ProductBatchG" +
-      "rpcResponse\022H\n\027updateProductQuantities\022\025" +
-      ".ProductQuantityBatch\032\026.google.protobuf." +
-      "EmptyB-\n\033org.onlinestore.common.grpcB\014Pr" +
-      "oductProtoP\001b\006proto3"
+      "\n\013cofig.proto\022\tinventory\032\033google/protobu" +
+      "f/empty.proto\"4\n\022ProductGrpcRequest\022\014\n\004n" +
+      "ame\030\001 \001(\t\022\020\n\010trace_id\030\002 \001(\t\"p\n\023ProductGr" +
+      "pcResponse\022\n\n\002id\030\001 \001(\t\022\014\n\004name\030\002 \001(\t\022\020\n\010" +
+      "quantity\030\003 \001(\005\022\r\n\005price\030\004 \001(\001\022\014\n\004sale\030\005 " +
+      "\001(\005\022\020\n\010trace_id\030\006 \001(\t\"A\n\027ProductBatchGrp" +
+      "cRequest\022\024\n\014product_name\030\001 \003(\t\022\020\n\010trace_" +
+      "id\030\002 \001(\t\"f\n\030ProductBatchGrpcResponse\0228\n\020" +
+      "product_response\030\001 \003(\0132\036.inventory.Produ" +
+      "ctGrpcResponse\022\020\n\010trace_id\030\002 \001(\t\"@\n\026Prod" +
+      "uctQuantityRequest\022\024\n\014product_name\030\001 \001(\t" +
+      "\022\020\n\010quantity\030\002 \001(\005\"e\n\024ProductQuantityBat" +
+      "ch\022;\n\020quantityProducts\030\001 \003(\0132!.inventory" +
+      ".ProductQuantityRequest\022\020\n\010trace_id\030\002 \001(" +
+      "\t2\232\002\n\020InventoryService\022Q\n\020getProductByNa" +
+      "me\022\035.inventory.ProductGrpcRequest\032\036.inve" +
+      "ntory.ProductGrpcResponse\022_\n\024getListProd" +
+      "uctByName\022\".inventory.ProductBatchGrpcRe" +
+      "quest\032#.inventory.ProductBatchGrpcRespon" +
+      "se\022R\n\027updateProductQuantities\022\037.inventor" +
+      "y.ProductQuantityBatch\032\026.google.protobuf" +
+      ".EmptyB-\n\033org.onlinestore.common.grpcB\014P" +
+      "roductProtoP\001b\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
         new com.google.protobuf.Descriptors.FileDescriptor[] {
           com.google.protobuf.EmptyProto.getDescriptor(),
         });
-    internal_static_ProductGrpcRequest_descriptor =
+    internal_static_inventory_ProductGrpcRequest_descriptor =
       getDescriptor().getMessageTypes().get(0);
-    internal_static_ProductGrpcRequest_fieldAccessorTable = new
+    internal_static_inventory_ProductGrpcRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
-        internal_static_ProductGrpcRequest_descriptor,
+        internal_static_inventory_ProductGrpcRequest_descriptor,
         new java.lang.String[] { "Name", "TraceId", });
-    internal_static_ProductGrpcResponse_descriptor =
+    internal_static_inventory_ProductGrpcResponse_descriptor =
       getDescriptor().getMessageTypes().get(1);
-    internal_static_ProductGrpcResponse_fieldAccessorTable = new
+    internal_static_inventory_ProductGrpcResponse_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
-        internal_static_ProductGrpcResponse_descriptor,
+        internal_static_inventory_ProductGrpcResponse_descriptor,
         new java.lang.String[] { "Id", "Name", "Quantity", "Price", "Sale", "TraceId", });
-    internal_static_ProductBatchGrpcRequest_descriptor =
+    internal_static_inventory_ProductBatchGrpcRequest_descriptor =
       getDescriptor().getMessageTypes().get(2);
-    internal_static_ProductBatchGrpcRequest_fieldAccessorTable = new
+    internal_static_inventory_ProductBatchGrpcRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
-        internal_static_ProductBatchGrpcRequest_descriptor,
+        internal_static_inventory_ProductBatchGrpcRequest_descriptor,
         new java.lang.String[] { "ProductName", "TraceId", });
-    internal_static_ProductBatchGrpcResponse_descriptor =
+    internal_static_inventory_ProductBatchGrpcResponse_descriptor =
       getDescriptor().getMessageTypes().get(3);
-    internal_static_ProductBatchGrpcResponse_fieldAccessorTable = new
+    internal_static_inventory_ProductBatchGrpcResponse_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
-        internal_static_ProductBatchGrpcResponse_descriptor,
+        internal_static_inventory_ProductBatchGrpcResponse_descriptor,
         new java.lang.String[] { "ProductResponse", "TraceId", });
-    internal_static_ProductQuantityRequest_descriptor =
+    internal_static_inventory_ProductQuantityRequest_descriptor =
       getDescriptor().getMessageTypes().get(4);
-    internal_static_ProductQuantityRequest_fieldAccessorTable = new
+    internal_static_inventory_ProductQuantityRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
-        internal_static_ProductQuantityRequest_descriptor,
+        internal_static_inventory_ProductQuantityRequest_descriptor,
         new java.lang.String[] { "ProductName", "Quantity", });
-    internal_static_ProductQuantityBatch_descriptor =
+    internal_static_inventory_ProductQuantityBatch_descriptor =
       getDescriptor().getMessageTypes().get(5);
-    internal_static_ProductQuantityBatch_fieldAccessorTable = new
+    internal_static_inventory_ProductQuantityBatch_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
-        internal_static_ProductQuantityBatch_descriptor,
+        internal_static_inventory_ProductQuantityBatch_descriptor,
         new java.lang.String[] { "QuantityProducts", "TraceId", });
     descriptor.resolveAllFeaturesImmutable();
     com.google.protobuf.EmptyProto.getDescriptor();

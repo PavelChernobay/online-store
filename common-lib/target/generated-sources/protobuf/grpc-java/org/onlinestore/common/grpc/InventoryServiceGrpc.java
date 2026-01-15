@@ -9,7 +9,7 @@ public final class InventoryServiceGrpc {
 
   private InventoryServiceGrpc() {}
 
-  public static final java.lang.String SERVICE_NAME = "InventoryService";
+  public static final java.lang.String SERVICE_NAME = "inventory.InventoryService";
 
   // Static method descriptors that strictly reflect the proto.
   private static volatile io.grpc.MethodDescriptor<org.onlinestore.common.grpc.ProductGrpcRequest,
