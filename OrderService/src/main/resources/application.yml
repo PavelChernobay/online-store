@@ -6,7 +6,7 @@ spring:
     name: order-service
 
   datasource:
-    url: jdbc:postgresql://localhost:5432/order_db
+    url: jdbc:postgresql://order-db:5432/order_db
     username: user
     password: user
 
@@ -35,7 +35,7 @@ spring:
       cron: "0 0 0 * * *"
 
   kafka:
-    bootstrap-servers: localhost:9092
+    bootstrap-servers: kafka:9092
     topic:
       analytics-topic: "analytics"
     partition:

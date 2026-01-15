@@ -52,8 +52,16 @@ public class InventoryGrpcClient {
 
             return blockingStub.getProductByName(productRequest);
         } catch (StatusRuntimeException ex) {
-            log.warn("trace_id = {}, Товара не существует", traceId);
-            throw new ProductNotFoundException(ProductNotFoundException.PRODUCT_NOT_FOUND);
+//            log.warn("trace_id = {}, Товара не существует", traceId);
+//            throw new ProductNotFoundException(ProductNotFoundException.PRODUCT_NOT_FOUND);
+            log.error(
+                    "trace_id = {}, gRPC error: status={}, description={}",
+                    traceId,
+                    ex.getStatus().getCode(),
+                    ex.getStatus().getDescription(),
+                    ex
+            );
+            throw ex;
         }
     }
 

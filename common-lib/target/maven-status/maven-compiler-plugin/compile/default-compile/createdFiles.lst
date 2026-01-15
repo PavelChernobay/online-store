@@ -35,8 +35,6 @@ org/onlinestore/common/grpc/InventoryServiceGrpc$InventoryServiceBlockingStub.cl
 org/onlinestore/common/grpc/ProductQuantityBatch.class
 org/onlinestore/common/grpc/ProductQuantityRequestOrBuilder.class
 org/onlinestore/common/grpc/InventoryServiceGrpc$InventoryServiceBaseDescriptorSupplier.class
-org/onlinestore/common/grpc/InventoryServiceGrpc$InventoryServiceBlockingV2Stub.class
 org/onlinestore/common/grpc/InventoryServiceGrpc.class
 org/onlinestore/common/grpc/InventoryServiceGrpc$InventoryServiceFileDescriptorSupplier.class
 org/onlinestore/common/grpc/ProductBatchGrpcResponse.class
-org/onlinestore/common/grpc/InventoryServiceGrpc$4.class
