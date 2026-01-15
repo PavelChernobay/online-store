@@ -1,0 +1,50 @@
+server:
+  port: 8081
+
+spring:
+  application:
+    name: order-service
+
+  datasource:
+    url: jdbc:postgresql://order-db:5432/order_db
+    username: user
+    password: user
+
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+
+  flyway:
+    enabled: true
+    locations: classpath:db/migration
+
+  security:
+    jwt:
+      secret: "r9ZPBmZeMj3uO7Rzy5l4xinVfZerNZ97eUstX71ewWw="
+      expiration-ms: 3600000
+      refresh-expiration-ms: 604800000
+
+  scheduler:
+    inventory-outbox:
+      fix-delay: 60000
+    analytics-outbox:
+      cron: "0 0 0 * * *"
+
+  kafka:
+    bootstrap-servers: kafka:9092
+    topic:
+      analytics-topic: "analytics"
+    partition:
+      count: 3
+    streams:
+      replication-factor: 1
+
+grpc:
+  client:
+    inventory-service:
+      address: "static://inventory-service:9090"
+      negotiation-type: plaintext

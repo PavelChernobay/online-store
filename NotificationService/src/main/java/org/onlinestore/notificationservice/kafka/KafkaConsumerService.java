@@ -1,0 +1,33 @@
+package org.onlinestore.notificationservice.kafka;
+
+import dto.AnalyticsKafkaEvent;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.onlinestore.notificationservice.service.OrderService;
+import org.springframework.kafka.annotation.KafkaListener;
+import org.springframework.stereotype.Service;
+
+/**
+ * KafkaConsumerService отвечает за приём сообщений из Kafka
+ * и передачу данных в OrderService для последующей обработки.
+ */
+@Service
+@RequiredArgsConstructor
+@Slf4j
+public class KafkaConsumerService {
+
+    private final OrderService orderService;
+
+
+    /**
+     * Обрабатывает входящее аналитическое событие из Kafka и создаёт заказ.
+     *
+     * @param consumer аналитическое событие из Kafka
+     */
+    @KafkaListener(topics = "${spring.kafka.topic.analytics-topic}", groupId = "${spring.kafka.consumer.group-id}")
+    public void consumeAnalytics(AnalyticsKafkaEvent consumer) {
+        log.info("Сообщение обработано в kafka");
+        orderService.createOrder(consumer);
+    }
+
+}
